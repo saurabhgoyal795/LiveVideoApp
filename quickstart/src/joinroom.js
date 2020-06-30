@@ -17,7 +17,9 @@ const $activeParticipant = $('div#active-participant > div.participant.main', $r
 const $activeVideo = $('video', $activeParticipant);
 const $participants = $('div#participants', $room);
 let tokenFinal ;
-
+let localVideoTrack;
+let screenTrack;
+let startCapture = false;
 // The current active Participant in the Room.
 let activeParticipant = null;
 
@@ -29,11 +31,11 @@ let isActiveParticipantPinned = false;
  * Set the active Participant's video.
  * @param participant - the active Participant
  */
-function setActiveParticipant(participant) {
-  if (activeParticipant) {
-    const $activeParticipant = $(`div#${activeParticipant.sid}`, $participants);
-    $activeParticipant.removeClass('active');
-    $activeParticipant.removeClass('pinned');
+ function setActiveParticipant(participant) {
+   if (activeParticipant) {
+     const $activeParticipant = $(`div#${activeParticipant.sid}`, $participants);
+     $activeParticipant.removeClass('active');
+     $activeParticipant.removeClass('pinned');
 
     // Detach any existing VideoTrack of the active Participant.
     const { track: activeTrack } = Array.from(activeParticipant.videoTracks.values())[0] || {};
@@ -68,24 +70,24 @@ function setActiveParticipant(participant) {
  * Set the current active Participant in the Room.
  * @param room - the Room which contains the current active Participant
  */
-function setCurrentActiveParticipant(room) {
-  const { dominantSpeaker, localParticipant } = room;
-  setActiveParticipant(dominantSpeaker || localParticipant);
-}
+ function setCurrentActiveParticipant(room) {
+   const { dominantSpeaker, localParticipant } = room;
+   setActiveParticipant(dominantSpeaker || localParticipant);
+ }
 
 /**
  * Set up the Participant's media container.
  * @param participant - the Participant whose media container is to be set up
  * @param room - the Room that the Participant joined
  */
-function setupParticipantContainer(participant, room) {
-  const { identity, sid } = participant;
+ function setupParticipantContainer(participant, room) {
+   const { identity, sid } = participant;
 
   // Add a container for the Participant's media.
   const $container = $(`<div class="participant" data-identity="${identity}" id="${sid}">
     <audio autoplay ${participant === room.localParticipant ? 'muted' : ''} style="opacity: 0"></audio>
     <video autoplay muted playsinline style="opacity: 0"></video>
-  </div>`);
+    </div>`);
 
   // Toggle the pinning of the active Participant's video.
   $container.on('click', () => {
@@ -114,22 +116,24 @@ function setupParticipantContainer(participant, room) {
  * effect in Peer-to-Peer Rooms.
  * @param participant - the RemoteParticipant whose VideoTrack priority is to
   * @param priority - null | 'low' | 'standard' | 'high'
- */
-function setVideoPriority(participant, priority) {
-  participant.videoTracks.forEach(publication => {
-    const track = publication.track;
-    if (track && track.setPriority) {
-      track.setPriority(priority);
-    }
-  });
-}
+  */
+  function setVideoPriority(participant, priority) {
+    participant.videoTracks.forEach(publication => {
+      const track = publication.track;
+      console.log("setVideoPriority");
+      console.log(track);
+      if (track && track.setPriority) {
+        track.setPriority(priority);
+      }
+    });
+  }
 
 /**
  * Attach a Track to the DOM.
  * @param track - the Track to attach
  * @param participant - the Participant which published the Track
  */
-function attachTrack(track, participant) {
+ function attachTrack(track, participant) {
   // Attach the Participant's Track to the thumbnail.
   const $media = $(`div#${participant.sid} > ${track.kind}`, $participants);
   $media.css('opacity', '');
@@ -148,7 +152,7 @@ function attachTrack(track, participant) {
  * @param track - the Track to be detached
  * @param participant - the Participant that is publishing the Track
  */
-function detachTrack(track, participant) {
+ function detachTrack(track, participant) {
   // Detach the Participant's Track from the thumbnail.
   const $media = $(`div#${participant.sid} > ${track.kind}`, $participants);
   $media.css('opacity', '0');
@@ -167,7 +171,7 @@ function detachTrack(track, participant) {
  * @param participant - the Participant
  * @param room - the Room that the Participant joined
  */
-function participantConnected(participant, room) {
+ function participantConnected(participant, room) {
   // Set up the Participant's media container.
   setupParticipantContainer(participant, room);
 
@@ -187,7 +191,7 @@ function participantConnected(participant, room) {
  * @param participant - the disconnected Participant
  * @param room - the Room that the Participant disconnected from
  */
-function participantDisconnected(participant, room) {
+ function participantDisconnected(participant, room) {
   // If the disconnected Participant was pinned as the active Participant, then
   // unpin it so that the active Participant can be updated.
   if (activeParticipant === participant && isActiveParticipantPinned) {
@@ -204,7 +208,7 @@ function participantDisconnected(participant, room) {
  * @param publication - the TrackPublication
  * @param participant - the publishing Participant
  */
-function trackPublished(publication, participant) {
+ function trackPublished(publication, participant) {
   // If the TrackPublication is already subscribed to, then attach the Track to the DOM.
   if (publication.track) {
     attachTrack(publication.track, participant);
@@ -226,12 +230,12 @@ function trackPublished(publication, participant) {
  * @param token - the AccessToken used to join a Room
  * @param connectOptions - the ConnectOptions used to join a Room
  */
-async function joinRoom(token, connectOptions) {
+ async function joinRoom(token, connectOptions) {
   // Join to the Room with the given AccessToken and ConnectOptions.
   const room = await connect(token, connectOptions);
 
   // Save the LocalVideoTrack.
-  let localVideoTrack = Array.from(room.localParticipant.videoTracks.values())[0].track;
+  localVideoTrack = Array.from(room.localParticipant.videoTracks.values())[0].track;
 
   // Make the Room available in the JavaScript console for debugging.
   window.room = room;
@@ -351,16 +355,19 @@ async function joinRoom(token, connectOptions) {
   stopScreenCapture.style.display = 'none';
 
   // The LocalVideoTrack for your screen.
-  let screenTrack;
   captureScreen.onclick = async function() {
     try {
       // Create and preview your local screen.
+      startCapture = true;
       console.log("capture clicked");
       screenTrack = await createScreenTrack(720, 1280);
-      screenTrack.attach(screenPreview);
-      room.localParticipant.publishTrack(screenTrack, {name: "screen"});
+      // screenTrack.attach(screenPreview);
+      room.localParticipant.unpublishTrack(localVideoTrack);
+      detachTrack(localVideoTrack, room.localParticipant)
+      room.localParticipant.publishTrack(screenTrack);
+      // attachTrack(screenTrack, room.localParticipant);
       // Show the "Capture Screen" button after screen capture stops.
-      screenTrack.on('stopped', toggleButtons);
+      screenTrack.on('stopped', stopScreenshare);
       // Show the "Stop Capture Screen" button.
       toggleButtons();
     } catch (e) {
@@ -368,12 +375,21 @@ async function joinRoom(token, connectOptions) {
     }
   };
 
-  stopScreenCapture.onclick = function() {
-    // Stop capturing your screen.
-    screenTrack.stop();
-    room.localParticipant.unpublishTrack(screenTrack);
+  stopScreenCapture.onclick = async function() {
+    stopScreenshare();
   }
 }());
+
+function stopScreenshare() {
+  console.log("aayaa stop click");
+  if (startCapture) {
+    startCapture = false;
+    screenTrack.stop();
+    room.localParticipant.unpublishTrack(screenTrack);
+    attachTrack(localVideoTrack, room.localParticipant);
+    toggleButtons();
+  }
+}
 
 function toggleButtons() {
   captureScreen.style.display = captureScreen.style.display === 'none' ? '' : 'none';

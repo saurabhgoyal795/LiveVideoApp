@@ -386,6 +386,7 @@ function stopScreenshare() {
     startCapture = false;
     screenTrack.stop();
     room.localParticipant.unpublishTrack(screenTrack);
+    room.localParticipant.publishTrack(localVideoTrack);
     attachTrack(localVideoTrack, room.localParticipant);
     toggleButtons();
   }

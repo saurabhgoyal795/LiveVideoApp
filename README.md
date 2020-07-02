@@ -12,7 +12,7 @@ _For Twilio Video 1.x Quickstart, go [here](https://github.com/twilio/video-quic
 This application should give you a ready-made starting point for writing your
 own video apps with Twilio Video.
 
-![screenshot of chat app](quickstart/public/quickstart.png)
+![screenshot of chat app](classroom/public/quickstart.png)
 
 ## Setup Requirements
 
@@ -61,7 +61,7 @@ After choosing your input devices, you will be prompted to enter your Room name 
 which you will join the Room. Now, all you have to do is open another tab and join the same Room in order
 to see and hear yourself on both tabs!
 
-[joinroom.js](quickstart/src/joinroom.js) demonstrates how to use the SDK APIs to build a multi-party
+[joinroom.js](classroom/src/joinroom.js) demonstrates how to use the SDK APIs to build a multi-party
 video sesssion. You can start building your own application by incorporating this code into your own
 application, and build your user interface around it.
 

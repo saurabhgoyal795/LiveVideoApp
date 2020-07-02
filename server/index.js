@@ -43,8 +43,8 @@ const app = express();
 });
 
 // Set up the path for the quickstart.
-const quickstartPath = path.join(__dirname, '../quickstart/public');
-app.use('/quickstart', express.static(quickstartPath));
+const quickstartPath = path.join(__dirname, '../classroom/public');
+app.use('/classroom', express.static(quickstartPath));
 
 // Set up the path for the examples page.
 const examplesPath = path.join(__dirname, '../examples');
@@ -54,7 +54,7 @@ app.use('/examples', express.static(examplesPath));
  * Default to the Quick Start application.
  */
 app.get('/', (request, response) => {
-  response.redirect('/quickstart');
+  response.redirect('/classroom');
 });
 
 /**

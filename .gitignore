@@ -47,7 +47,7 @@ jspm_packages
 package-lock.json
 
 # The generated index.js
-quickstart/public/index.js
+classroom/public/index.js
 examples/bandwidthconstraints/public/index.js
 examples/codecpreferences/public/index.js
 examples/dominantspeaker/public/index.js

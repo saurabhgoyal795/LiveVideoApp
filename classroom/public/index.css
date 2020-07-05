@@ -2,6 +2,13 @@ html {
   height: 100%;
 }
 
+*{
+outline: none!important;
+-webkit-user-select: initial;
+user-select: initial!;
+-webkit-tap-highlight-color:  rgba(255, 255, 255, 0);    
+}
+
 body {
   height: 100%;
 }
@@ -186,6 +193,15 @@ video#screenpreview {
 @media (max-width: 700px) {
   .iframeDiv {
     height: 250vw !important;
+  }
+  #scrollButtonDiv {
+    display: block !important;
+  }
+  .videoView {
+    height: 56vw !important;
+  }
+  #capturescreen {
+    display: none !important;
   }
 
 }

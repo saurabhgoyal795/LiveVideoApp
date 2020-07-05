@@ -7,7 +7,12 @@
   <link rel="stylesheet" href="prism.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 </head>
-<body>
+<body style="background-color: #56077e;background-image: url(img/bg-7.jpg);background-size: cover;background-attachment: fixed;background-repeat: no-repeat;">
+      <div id="scrollButtonDiv" style="position:fixed;right:30px;bottom:16px;z-index:10; display: none;">
+<div onclick="$('html,body').animate({scrollTop: $('html,body').scrollTop() - 100}, 500);" style="cursor:pointer;display:inline-block;border-radius:4px;background:rgba(113,8,101,.3);"><img style="width:24px;" src="img/baseline_arrow_upward_white_48dp.png"/></div>
+<br>
+<div onclick="$('html,body').animate({scrollTop: $('html,body').scrollTop() + 100}, 500);" style="cursor:pointer;display:inline-block;border-radius:4px;background:rgba(113,8,101,.3);margin-top:5px;"><img style="width:24px;" src="img/baseline_arrow_downward_white_48dp.png"/></div>
+</div>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark"style="background: linear-gradient(to right,#480048,#C04848);">
     <a class="navbar-brand" href="#">
       <img src="img/hellolearnercoding_2x.png" height="42" class="d-inline-block align-top" alt="">
@@ -25,12 +30,12 @@
       <button class="btn btn-outline-primary" id="leave-room" style="color: white">Leave Room</button>
     </div>
   </nav>
-  <div class="container-fluid">
+  <div class="container-fluid" style="padding-left: 8px;padding-right: 8px;">
     <div class="row" id="room">
       <div id="participants" class="col-xs-12 col-sm-3 col-md-2" style="text-align: center"></div>
       <div id="active-participant" class="col-xs-12 col-sm-9 col-md-10" style="text-align: center">
         <div class="participant main">
-          <video autoplay playsinline muted ></video>
+          <video class= "videoView" autoplay playsinline muted ></video>
 <!--              <video id="screenpreview" autoplay></video>
 -->          </div>
 <iframe class="iframeDiv" id= "iframe" src="" style="height: 100vh;width: 100%; border:0px"></iframe>
@@ -122,7 +127,7 @@
     </div>
   </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="jquery-2.2.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/6.3.2/firebase-app.js"></script>

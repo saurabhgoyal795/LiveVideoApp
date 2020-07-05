@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:classroom": "copyfiles -f classroom/src/helpers.js classroom/public && browserify classroom/src/index.js > classroom/public/index.js",
+    "build:classroom": "copyfiles -f classroom/src/helpers.js classroom/public",
     "clean": "npm-run-all clean:*",
     "clean:classroom": "rimraf classroom/public/index.js classroom/public/helpers.js",
-    "start": "npm run clean && npm run build && node server"
+    "browserify": "npm-run-all browserify:*",
+    "browserify:classroom": "browserify classroom/src/index.js > classroom/public/index.js",
+    "start": "npm run browserify && node server"
   },
   "repository": {
     "type": "git",

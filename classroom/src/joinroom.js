@@ -12,6 +12,12 @@ const screenPreview = document.querySelector('video#screenpreview');
 const stopScreenCapture = document.querySelector('button#stopscreencapture');
 
 const $leave = $('#leave-room');
+const mute = document.querySelector('img#mute-room');
+const unmute = document.querySelector('img#unmute-room');
+const hideVideo = document.querySelector('img#hide-room');
+const showVideo = document.querySelector('img#unhide-room');
+
+
 const $room = $('#room');
 const $activeParticipant = $('div#active-participant > div.participant.main', $room);
 const $activeVideo = $('video', $activeParticipant);
@@ -274,6 +280,35 @@ let isActiveParticipantPinned = false;
     $leave.off('click', onLeave);
     room.disconnect();
   });
+ mute.onclick = function () {
+      mute.style.display = 'none';
+      unmute.style.display = 'inline-block';
+    room.localParticipant.audioTracks.forEach(audioTrack => {
+        audioTrack.track.disable();
+    });
+  };
+
+   unmute.onclick = function () {
+      mute.style.display = 'inline-block';
+      unmute.style.display = 'none';
+    room.localParticipant.audioTracks.forEach(audioTrack => {
+        audioTrack.track.enable();
+    });
+  };
+   showVideo.onclick = function () {
+      hideVideo.style.display = 'inline-block';
+      showVideo.style.display = 'none';
+     room.localParticipant.videoTracks.forEach(videoTrack => {
+        videoTrack.track.enable();
+      });
+  };
+    hideVideo.onclick = function () {
+        hideVideo.style.display = 'none';
+      showVideo.style.display = 'inline-block';
+     room.localParticipant.videoTracks.forEach(videoTrack => {
+        videoTrack.track.disable();
+      });
+  };
 
   return new Promise((resolve, reject) => {
     // Leave the Room when the "beforeunload" event is fired.

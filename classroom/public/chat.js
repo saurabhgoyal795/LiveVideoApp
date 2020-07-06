@@ -131,6 +131,10 @@ var chatIos = getUrlVars()["chatIos"];
      var showNativeChat = true;
      var showNativeLesson = true;
      var timer = 0;
+     if (dataObject == undefined) {
+        $("#iframe").css("display", "none");
+       return
+     }
      if (dataObject.org != undefined) {
        var org = dataObject.org;
        if (org != undefined) {

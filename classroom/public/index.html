@@ -9,9 +9,9 @@
 </head>
 <body style="background-color: #56077e;background-image: url(img/bg-7.jpg);background-size: cover;background-attachment: fixed;background-repeat: no-repeat;">
       <div id="scrollButtonDiv" style="position:fixed;right:30px;bottom:16px;z-index:10; display: none;">
-<div onclick="$('html,body').animate({scrollTop: $('html,body').scrollTop() - 100}, 500);" style="cursor:pointer;display:inline-block;border-radius:4px;background:rgba(113,8,101,.3);"><img style="width:24px;" src="img/baseline_arrow_upward_white_48dp.png"/></div>
+<div onclick="$('html,body').animate({scrollTop: $('html,body').scrollTop() - 499}, 500);" style="cursor:pointer;display:inline-block;border-radius:4px;background:rgba(113,8,101,.3);"><img style="width:24px;" src="img/baseline_arrow_upward_white_48dp.png"/></div>
 <br>
-<div onclick="$('html,body').animate({scrollTop: $('html,body').scrollTop() + 100}, 500);" style="cursor:pointer;display:inline-block;border-radius:4px;background:rgba(113,8,101,.3);margin-top:5px;"><img style="width:24px;" src="img/baseline_arrow_downward_white_48dp.png"/></div>
+<div onclick="$('html,body').animate({scrollTop: $('html,body').scrollTop() + 499}, 500);" style="cursor:pointer;display:inline-block;border-radius:4px;background:rgba(113,8,101,.3);margin-top:5px;"><img style="width:24px;" src="img/baseline_arrow_downward_white_48dp.png"/></div>
 </div>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark"style="background: linear-gradient(to right,#480048,#C04848);">
     <a class="navbar-brand" href="#">
@@ -27,7 +27,11 @@
           <button id="stopscreencapture" class="btn btn-primary btn-block" style="display: none;">Stop Screen Capture</button>
         </li>
       </ul>
-      <button class="btn btn-outline-primary" id="leave-room" style="color: white">Leave Room</button>
+      <img src="img/baseline_mic_white_48dp.png" height="28" id="mute-room"  alt="">
+      <img src="img/baseline_mic_off_white_48dp.png" height="28" id="unmute-room"  alt="" style="display: none;">
+      <img src="img/baseline_videocam_white_48dp.png" height="28" id="hide-room"  alt="">
+      <img src="img/baseline_videocam_off_white_48dp.png" height="28" id="unhide-room"  alt="" style="display: none;">
+      <button class="btn btn-outline-primary" id="leave-room" style="color: white; margin-left: 8px">Leave Room</button>
     </div>
   </nav>
   <div class="container-fluid" style="padding-left: 8px;padding-right: 8px;">

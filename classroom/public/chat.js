@@ -206,6 +206,7 @@ var chatIos = getUrlVars()["chatIos"];
        if(isAdmin == true ||  isAdmin == "true"){
          lessonUrl = lessonUrl.trim()+"&isAdmin=true";
        }
+       $("#iframe").css("display", "block");
        if (autoTimer == true || autoTimer == "true") {
          $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&email="+$("#screen-email").val()+"&header=none&slide="+slideNumber+"&sessionId="+id+"&timerOn=true");
         } else {

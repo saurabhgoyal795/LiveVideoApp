@@ -55,7 +55,7 @@ function selectRoom($modal, error) {
 
           $join.off('click', onJoin);
           $modal.modal('hide');
-          getUpdateListener();
+          getUpdateListener(identity);
         }
       });
     });

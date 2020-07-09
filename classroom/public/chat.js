@@ -33,6 +33,11 @@ var chatIos = getUrlVars()["chatIos"];
    isAdmin = getUrlVars()["isAdmin"];
    
   console.log("sessionId:"+sessionId);
+  var version = getChromeVersion();
+  if (version < 73 && version != -1) {
+      alert("Please update your chrome Brower to use this feature");
+  }
+
    if(sessionId == undefined && window.location.href.indexOf("/live") > -1){
       sessionId = window.location.href.split("/")[4];  
    }
@@ -120,7 +125,13 @@ var chatIos = getUrlVars()["chatIos"];
    }).catch(function(error) {});
  }
 
- function getUpdateListener() {
+ function getChromeVersion () {     
+    var raw = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+
+    return raw ? parseInt(raw[2], 10) : -1;
+}
+
+ function getUpdateListener(saveName) {
    db.collection("liveAppSessionParameters").doc(id)
    .onSnapshot(function (doc) {
      console.log("doc.data getUpdateListener:",doc.data());
@@ -207,10 +218,16 @@ var chatIos = getUrlVars()["chatIos"];
          lessonUrl = lessonUrl.trim()+"&isAdmin=true";
        }
        $("#iframe").css("display", "block");
+       var tempName = saveName;
        if (autoTimer == true || autoTimer == "true") {
-         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&email="+$("#screen-email").val()+"&header=none&slide="+slideNumber+"&sessionId="+id+"&timerOn=true");
+         if (tempName == undefined || tempName == null){
+           tempName = "";
+         } else {
+           tempName = tempName.trim().replace(/\s/g, '');
+         }
+         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&email="+tempName+"_"+new Date().getTime()+"&header=none&slide="+slideNumber+"&sessionId="+id+"&timerOn=true");
         } else {
-         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&email="+$("#screen-email").val()+"header=none&slide="+slideNumber+"&sessionId="+id); 
+         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&email="+tempName+"_"+new Date().getTime()+"&header=none&slide="+slideNumber+"&sessionId="+id); 
         }
      } else {
        if (slideNumber != slideNo){

@@ -225,9 +225,12 @@ var chatIos = getUrlVars()["chatIos"];
          } else {
            tempName = tempName.trim().replace(/\s/g, '');
          }
-         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&email="+tempName+"_"+new Date().getTime()+"&header=none&slide="+slideNumber+"&sessionId="+id+"&timerOn=true");
+         if (lessonUrl.trim().indexOf("?") === -1) {
+            lessonUrl = lessonUrl.trim() + "?";
+         }
+         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&hideHeader=true&email="+tempName+"_"+new Date().getTime()+"&header=none&slide="+slideNumber+"&sessionId="+id+"&timerOn=true");
         } else {
-         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&email="+tempName+"_"+new Date().getTime()+"&header=none&slide="+slideNumber+"&sessionId="+id); 
+         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&hideHeader=true&email="+tempName+"_"+new Date().getTime()+"&header=none&slide="+slideNumber+"&sessionId="+id); 
         }
      } else {
        if (slideNumber != slideNo){
@@ -458,13 +461,18 @@ function getUrlParam(parameter, defaultvalue){
  }
 
  function changeUrl() {
+    var jsonObject = {};
+    var urlString = $(".urlString").val().trim();
+      if (urlString.trim().indexOf("?") === -1) {
+            urlString = urlString.trim() + "?";
+      }
    if($(".urlString").val().trim() != ""){
-     const dataObject = {timer: 0, showAnswer: false, currentSlide: 0, lessonUrl: $(".urlString").val().trim() , showNativeLesson: true}
+     const dataObject = {timer: 0, showAnswer: false, currentSlide: 0, lessonUrl: urlString , showNativeLesson: true}
      db.collection('liveAppSessionParameters').doc(id).set(dataObject, { merge: true }).then(function() {   
      }).catch(function(error) {});
-     var jsonObject = {};
+    
    jsonObject["type"] = "changeUrl";
-   jsonObject["value"] = $(".urlString").val().trim();
+   jsonObject["value"] = urlString;
    jsonObject["time"] = moment(new Date().getTime()).format("DD-MM-YYYY HH:mm:ss");
   teacherAction.push(jsonObject);
    db.collection('liveAppSessionTeacherAction').doc(id).set({data: teacherAction}, { merge: true }).then(function() {

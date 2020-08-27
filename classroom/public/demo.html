@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Hello Learner - Best online, live learning platform for kids">
-    <meta name="author" content="Intap Labs">
-    <title>Hello Educators | Trusted Experts who deliver curated live learning courses for kids</title>
-    <link rel="shortcut icon" href="img/favicons/favicon-96x96.png" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="https://hellolearner.com/img/favicons/apple-icon-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href=" https://hellolearner.com/img/favicons/img/favicons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href=" https://hellolearner.com/img/favicons/img/favicons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href=" https://hellolearner.com/img/favicons/img/favicons/apple-icon-144x144.png">
-
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
+  <title>Hello Learner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="index.css" />
   <link rel="stylesheet" href="prism.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <style type="text/css">
+    div.participant {
+      margin:none;
+max-width:none;
+width:100%;
+border:none;
+margin:0px;
+padding:0px;
+height: auto;
+    }
+  </style>
 </head>
 <body style="background-color: #56077e;background-image: url(img/bg-7.jpg);background-size: cover;background-attachment: fixed;background-repeat: no-repeat;">
   <div id="scrollButtonDiv" style="position:fixed;right:30px;bottom:16px;z-index:10; display: none;">
@@ -27,7 +26,7 @@
   </div>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark"style="background: linear-gradient(to right,#480048,#C04848);">
     <a class="navbar-brand" href="#">
-      <img src="https://hellolearner.com/img/logo_2x.png" height="42" class="d-inline-block align-top" alt="">
+      <img src="img/hellolearnercoding_2x.png" height="42" class="d-inline-block align-top" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsible-content" aria-controls="collapsible-content" aria-expanded="false" aria-label="Toggle Navigation">
       <span class="navbar-toggler-icon"></span>
@@ -35,41 +34,33 @@
     <div class="collapse navbar-collapse" id="collapsible-content">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <button id="capturescreen" class="btn btn-primary btn-block">Share Screen</button>
-          <button id="stopscreencapture" class="btn btn-primary btn-block" style="display: none;">Stop Sharing</button>
+          <button id="capturescreen" class="btn btn-primary btn-block">Capture Screen</button>
+          <button id="stopscreencapture" class="btn btn-primary btn-block" style="display: none;">Stop Screen Capture</button>
         </li>
       </ul>
-      <img src="img/baseline_mic_white_48dp.png" height="28" id="mute-room"  alt="" style="padding: 0px 10px; ">
-      <img src="img/baseline_mic_off_white_48dp.png" height="28" id="unmute-room"  alt="" style="display: none; padding: 0px 10px;">
-      <img src="img/baseline_videocam_white_48dp.png" height="28" id="hide-room"  alt="" style="padding: 0px 10px;">
-      <img src="img/baseline_videocam_off_white_48dp.png" height="28" id="unhide-room"  alt="" style="display: none; padding: 0px 10px;">
-      <button class="btn btn-outline-primary" id="leave-room" style="color: white; margin-left: 8px">Leave Class</button>
+      <img src="img/baseline_mic_white_48dp.png" height="28" id="mute-room"  alt="">
+      <img src="img/baseline_mic_off_white_48dp.png" height="28" id="unmute-room"  alt="" style="display: none;">
+      <img src="img/baseline_videocam_white_48dp.png" height="28" id="hide-room"  alt="">
+      <img src="img/baseline_videocam_off_white_48dp.png" height="28" id="unhide-room"  alt="" style="display: none;">
+      <button class="btn btn-outline-primary" id="leave-room" style="color: white; margin-left: 8px">Leave Room</button>
     </div>
   </nav>
-  <div class="container-fluid" style="padding-left: 8px;padding-right: 8px;">
+  <div class="container-fluid">
     <div class="row" id="room" style="height: auto;">
-      <div id="participants" class="col-xs-12 col-sm-3 col-md-2" style="text-align: center"></div>
-      <div id="active-participant" class="col-xs-12 col-sm-9 col-md-7" style="text-align: center">
-        <div class="participant main">
-          <video class= "videoView" autoplay playsinline muted style="height: 33vw;"></video>
-         </div>
-</div>
-<div class="col-xs-12 col-sm-9 col-md-3" style="text-align: center">
-        <div class="form-group adminFunction" style="margin-top: 16px;">
-        <div class="input-group">
-          <input type="text" class="form-control form-control-solid urlString" placeholder="Enter your url...">
-          <button onclick="changeUrl()" class="btn btn-success" type="button">LoadUrl</button>
-        </div>
-      </div> 
-</div>
-</div>
-<div class="row">
-  <div  class="col-xs-12 col-sm-3 col-md-2" style="text-align: center"></div>
-  <div  class="col-xs-12 col-sm-9 col-md-10" style="text-align: center">
+      <div id="participants" class="col-xs-12 col-sm-3 col-md-3" style="text-align: center; top: 43px; margin: 0px"></div>
+       <div  class="col-xs-12 col-sm-9 col-md-9" style="text-align: center">
     <iframe class="iframeDiv" id= "iframe" src="" style="height: 100vh;width: 100%; border:0px; display: none;"></iframe>
   </div>
-
+      <div class="col-xs-12 col-sm-9 col-md-3" style="text-align: center">
+            <div class="form-group adminFunction" style="margin-top: 16px;">
+            <div class="input-group">
+              <input type="text" class="form-control form-control-solid urlString" placeholder="Enter your url...">
+              <button onclick="changeUrl()" class="btn btn-success" type="button">LoadUrl</button>
+            </div>
+          </div> 
+    </div>
 </div>
+
 <div id="modals">
   <div class="modal fade" id="select-mic" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="select-mic-label" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -24,6 +24,7 @@
  var id = "";
  var isChatToShow = true;
  var teacherAction = [];
+ var webinar_user_badge = getUrlParam("badge","");
 var chatIos = getUrlVars()["chatIos"];
    var autoTimer = false;
 
@@ -113,6 +114,61 @@ var chatIos = getUrlVars()["chatIos"];
   });
    $(".messageSendButton").css("opacity",".5");
    $(".messageSendButton").attr("disabled");
+     try{
+    if(webinar_user_badge == ""){
+      webinar_user_badge = localStorage["webinar_badge_"+id];
+    }
+    if(webinar_user_badge != "" && webinar_user_badge != undefined){
+      var badges = webinar_user_badge.split(",");
+      for(var i=0;i<badges.length;i++){
+        if(badges[i] != ""){
+          $("#badgeIconsDiv").append('<img src="image/'+badges[i]+'.png" style="width:30px;height:30px;margin-left:2px;" title='+badges[i].split("_")[1]+' />');
+        }
+      }
+    }
+  }catch(err){}
+
+  soundManager.setup({
+      url: '../../../SoundManager/swf/',
+      preferFlash: false,debugMode:false,
+      onready: function() {
+        soundmanagerReadyFlag = 1;
+        soundManager.createSound({
+          id : 'coin',
+          url : 'sounds/coin_sound.mp3'
+        });
+        soundManager.createSound({
+          id : 'coin_correctsound',
+          url : 'sounds/coins.mp3'
+        });
+        soundManager.load('coin_correctsound');
+        
+        soundManager.createSound({
+          id : 'coin_incorrectsound',
+          url : 'sounds/wrong_answer.mp3'
+        });
+        soundManager.load('coin_incorrectsound');
+        
+        soundManager.createSound({
+          id : 'slide_transition',
+          url : 'sounds/slide_transition.mp3'
+        });
+        soundManager.load('slide_transition');
+        
+        soundManager.createSound({
+          id : 'tap_sound',
+          url : 'sounds/popup_sound.mp3'
+        });
+        soundManager.load('tap_sound');
+        
+        soundManager.createSound({
+          id : 'pounce_end_30',
+          url : 'sounds/pounce_end_30.mp3'
+        });
+        soundManager.load('tap_sound');
+        
+      }
+  });
 
  });
 
@@ -132,6 +188,11 @@ var chatIos = getUrlVars()["chatIos"];
 }
 
  function getUpdateListener(saveName) {
+   saveRegistration(id,saveName);
+   console.log("Saurabh isAdmin "+isAdmin);
+   if(isAdmin){
+       startStudentDataListener();
+   }
    db.collection("liveAppSessionParameters").doc(id)
    .onSnapshot(function (doc) {
      console.log("doc.data getUpdateListener:",doc.data());
@@ -252,6 +313,7 @@ var chatIos = getUrlVars()["chatIos"];
      }
 
    });
+    username = saveName;
    
    
    db.collection("liveAppSessionParameters").doc(id).collection("currentBadge").doc("details")
@@ -259,11 +321,36 @@ var chatIos = getUrlVars()["chatIos"];
      console.log("doc.data getUpdateListener:",doc.data());
    var data = doc.data();
    if(data != undefined && data.status != undefined && data.status){
-     var wn = document.getElementById('iframe').contentWindow;
-     wn.postMessage('showAwardBadge='+data.badgeName+"#"+data.userName+"#"+data.userID, "*"); 
+          var userData = data.badgeName+"#"+data.userName+"#"+data.userID;
+        postMessage_showAwardBadge(userData);
    }
    });
    
+ }
+
+ function saveRegistration(id, userName) {
+   var d = new Date,
+  dformat = [d.getDate(),d.getMonth()+1,d.getFullYear()].join('/')+' '+[d.getHours(),d.getMinutes(),d.getSeconds()].join(':');
+  var responseData = {
+      WebinarID : id,
+      Name: userName,
+      UserID : userName,
+      EmployeeID : "",
+      Organization : "",
+      BatchNumber : "",
+      UserAgent : navigator.userAgent,
+      OperatingSystem : "",
+      fromApp : "",
+      CreatedAt : dformat
+    };
+    var saveUserRegistrationData = secondaryApp.functions('asia-east2').httpsCallable('saveUserRegistrationData');
+    saveUserRegistrationData(responseData).then(function(result) {
+      console.log("saveUserRegistrationData:",result);
+      var sanitizedMessage = result.data.text;
+    }).catch(function(error) {
+      console.log(error);
+    });
+   // body...
  }
 
  function stringToBoolean(val){
@@ -273,6 +360,31 @@ var chatIos = getUrlVars()["chatIos"];
    };
    return a[val];
  }
+
+ function postMessage_showAwardBadge(userData){
+  userData = userData.split("#");
+  console.log("postMessage_showAwardBadge:"+userData);
+  $(".badgeUserName").text("For "+userData[1]);
+  $("#badgeContianer").css("display","");
+  $(".badgeIcon").attr("src","image/"+userData[0]+".png");
+  $("#badgeContianer").addClass("animated animate__zoomInDown");
+  setTimeout(function(){
+    $("#badgeContianer").removeClass("animate__zoomInDown").addClass("animated animate__zoomOutDown");
+    setTimeout(function(){
+      $("#badgeContianer").css("display","none");
+      $("#badgeContianer").removeClass("animated animate__zoomOutDown");
+      if(userData[2] == username){
+        $("#badgeIconsDiv").append('<img src="image/'+userData[0]+'.png" style="width:30px;height:30px;margin-left:2px;" title='+userData[0].split('_')[1]+' />')
+        if(localStorage["webinar_badge_"+id] == undefined){
+          localStorage["webinar_badge_"+id] = userData[0];
+        }else{
+          localStorage["webinar_badge_"+id] = localStorage["webinar_badge_"+id]+","+userData[0];
+        }
+      }
+    },1000);
+  },3000);
+ soundManager.play('pounce_end_30');
+}
 
 function getUrlParam(parameter, defaultvalue){
     var urlparameter = defaultvalue;
@@ -421,6 +533,22 @@ function getUrlParam(parameter, defaultvalue){
      $(".btnClassTimer").css("display", "inline-block");
    });
  }
+
+ function getUrlParam(parameter, defaultvalue){
+    var urlparameter = defaultvalue;
+    if(window.location.href.indexOf(parameter) > -1){
+        urlparameter = getUrlVars()[parameter];
+        }
+    return decodeURI(urlparameter);
+}
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
 
  function startTimerWithCheckAnswer() {
    var timerVal = $(".timerInput").val();

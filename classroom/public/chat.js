@@ -187,12 +187,20 @@ var chatIos = getUrlVars()["chatIos"];
     return raw ? parseInt(raw[2], 10) : -1;
 }
 
- function getUpdateListener(saveName) {
+ function getUpdateListener(saveName, roomName) {
+   if(id === undefined || id.trim() === ""){
+     id = getUrlVars()["roomName"];
+   }
+   console.log("roomName: "+roomName);
+   if (id === undefined || id.trim() === ""){
+     id = roomName + "";
+   }
    saveRegistration(id,saveName);
    console.log("Saurabh isAdmin "+isAdmin);
    if(isAdmin){
        startStudentDataListener();
    }
+   console.log("id : "+id);
    db.collection("liveAppSessionParameters").doc(id)
    .onSnapshot(function (doc) {
      console.log("doc.data getUpdateListener:",doc.data());
@@ -229,6 +237,11 @@ var chatIos = getUrlVars()["chatIos"];
      }
      if (dataObject.lessonUrl != undefined){
        lessonUrl = dataObject.lessonUrl;
+       if (dataObject.largeView === undefined || dataObject.largeView === false){
+         $(".videoViewCss").css("display", "none");
+       } else {
+         $(".videoViewCss").css("display", "block");
+       }
      }
      if (dataObject.showAnswer != undefined){
        showAnswer = stringToBoolean(dataObject.showAnswer);
@@ -276,6 +289,12 @@ var chatIos = getUrlVars()["chatIos"];
        slideNo = slideNumber;
        //var isAdmin = getUrlVars()["isAdmin"];
        if(isAdmin == true ||  isAdmin == "true"){
+         if(lessonUrl.indexOf("courses.helloenglish.com/lessons/hindiDemo.html") != -1){
+           lessonUrl = "https://courses.helloenglish.com/TeacherChat/teacherWebinarDashboard.html"
+         }
+         if (lessonUrl.trim().indexOf("?") === -1) {
+            lessonUrl = lessonUrl.trim() + "?";
+         }
          lessonUrl = lessonUrl.trim()+"&isAdmin=true";
        }
        $("#iframe").css("display", "block");
@@ -606,6 +625,18 @@ function getUrlVars() {
    db.collection('liveAppSessionTeacherAction').doc(id).set({data: teacherAction}, { merge: true }).then(function() {
    }).catch(function(error) {});
    }
+ }
+
+ function changeToLargeView() {
+     const dataObject = {timer: 0, showAnswer: false, currentSlide: 0, largeView: true , showNativeLesson: true}
+     db.collection('liveAppSessionParameters').doc(id).set(dataObject, { merge: true }).then(function() {   
+     }).catch(function(error) {});
+ }
+
+  function changeToSmallView() {
+     const dataObject = {timer: 0, showAnswer: false, currentSlide: 0, largeView: false , showNativeLesson: true}
+     db.collection('liveAppSessionParameters').doc(id).set(dataObject, { merge: true }).then(function() {   
+     }).catch(function(error) {});
  }
 
  function showAnswer() {

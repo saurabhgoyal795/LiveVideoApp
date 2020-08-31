@@ -47,6 +47,12 @@
           <button id="capturescreen" class="btn btn-primary btn-block">Share Screen</button>
           <button id="stopscreencapture" class="btn btn-primary btn-block" style="display: none;">Stop Sharing</button>
         </li>
+          <li class="nav-item adminFunction" style="margin-left: 8px; display: none;">
+          <button  class="btn btn-primary btn-block " onclick="changeToLargeView()">Show Large View</button>
+        </li>
+         <li class="nav-item adminFunction" style="margin-left: 8px; display: none;">
+          <button  class="btn btn-primary btn-block"  onclick="changeToSmallView()">Show Small View</button>
+        </li>
       </ul>
       <img src="img/baseline_mic_white_48dp.png" height="28" id="mute-room"  alt="" style="padding: 0px 10px; ">
       <img src="img/baseline_mic_off_white_48dp.png" height="28" id="unmute-room"  alt="" style="display: none; padding: 0px 10px;">
@@ -57,20 +63,21 @@
   </nav>
   <div class="container-fluid" style="padding-left: 8px;padding-right: 8px;">
     <div class="row" id="room" style="height: auto;">
-      <div id="participants" class="col-xs-12 col-sm-3 col-md-2" style="text-align: center"></div>
-      <div id="active-participant" class="col-xs-12 col-sm-9 col-md-7" style="text-align: center">
-        <div class="participant main">
+      <div id="participants" class="col-xs-12 col-md-2" style="text-align: center"></div>
+      <div id="active-participant videoViewCss" class="col-xs-12 col-md-10" style="text-align: center">
+        <div class="participant main ">
           <video class= "videoView" autoplay playsinline muted style="height: 33vw;"></video>
          </div>
-</div>
-<div class="col-xs-12 col-sm-9 col-md-3" style="text-align: center">
-        <div class="form-group adminFunction" style="margin-top: 16px;">
+        <iframe class="iframeDiv" id= "iframe" src="" style="height: 100vh;width: 100%; border:0px; display: none;"></iframe>
+      </div>
+    <div class="col-xs-12 col-md-3" style="text-align: center">
+        <div class="form-group adminFunction" style="margin-top: 16px; display: none;">
         <div class="input-group">
           <input type="text" class="form-control form-control-solid urlString" placeholder="Enter your url...">
           <button onclick="changeUrl()" class="btn btn-success" type="button">LoadUrl</button>
         </div>
       </div> 
-      <div class="card card-custom gutter-b example example-compact adminFunction" style="padding:8px;margin-bottom:8px;">
+      <div class="card card-custom gutter-b example example-compact adminFunction" style="padding:8px;margin-bottom:8px; display: none;">
     <label>Award Badge</label>
     <div class="form-group row">
       <div class="col-lg-4">
@@ -124,13 +131,6 @@
     -->
   </div>
 </div>
-</div>
-<div class="row">
-  <div  class="col-xs-12 col-sm-3 col-md-2" style="text-align: center"></div>
-  <div  class="col-xs-12 col-sm-9 col-md-10" style="text-align: center">
-    <iframe class="iframeDiv" id= "iframe" src="" style="height: 100vh;width: 100%; border:0px; display: none;"></iframe>
-  </div>
-
 </div>
 <div id="modals">
   <div class="modal fade" id="select-mic" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="select-mic-label" aria-hidden="true">

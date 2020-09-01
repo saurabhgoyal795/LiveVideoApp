@@ -254,8 +254,12 @@ function showChangeUrlBox() {
      if (dataObject.lessonUrl != undefined){
        lessonUrl = dataObject.lessonUrl;
        if (dataObject.largeView === undefined || dataObject.largeView === false){
+         $(".smallViewDiv").css("display", "none");
+         $(".largeViewDiv").css("display", "block");
          $(".videoViewCss").css("display", "none");
        } else {
+        $(".smallViewDiv").css("display", "block");
+        $(".largeViewDiv").css("display", "none");
          $(".videoViewCss").css("display", "block");
        }
      }

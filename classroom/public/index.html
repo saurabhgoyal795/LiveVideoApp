@@ -8,9 +8,9 @@
     <meta name="description" content="Hello Learner - Best online, live learning platform for kids">
     <meta name="author" content="Intap Labs">
     <title>Hello Educators | Trusted Experts who deliver curated live learning courses for kids</title>
-    <link rel="shortcut icon" href="img/favicons/favicon-96x96.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://hellolearner.com/img/favicons/favicon-96x96.png" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="https://hellolearner.com/img/favicons/apple-icon-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href=" https://hellolearner.com/img/favicons/img/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="https://hellolearner.com/img/favicons/img/favicons/apple-icon-72x72.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href=" https://hellolearner.com/img/favicons/img/favicons/apple-icon-114x114.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href=" https://hellolearner.com/img/favicons/img/favicons/apple-icon-144x144.png">
 
@@ -44,18 +44,18 @@
     <div class="collapse navbar-collapse" id="collapsible-content">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <button id="capturescreen" class="btn btn-primary btn-block">Share Screen</button>
-          <button id="stopscreencapture" class="btn btn-primary btn-block" style="display: none;">Stop Sharing</button>
+          <button id="capturescreen" class="btn btn-primary btn-block" style="margin-top: .5rem">Share Screen</button>
+          <button id="stopscreencapture" class="btn btn-primary btn-block" style="display: none;" style="margin-top: .5rem">Stop Sharing</button>
         </li>
           <li class="nav-item adminFunction" style="margin-left: 8px; display: none;">
-          <button  class="btn btn-primary btn-block " onclick="changeToLargeView()">Show Large View</button>
+          <button  class="btn btn-primary btn-block largeViewDiv" onclick="changeToLargeView()" style="margin-top: .5rem">Show Large View</button>
         </li>
          <li class="nav-item adminFunction" style="margin-left: 8px; display: none;">
-          <button  class="btn btn-primary btn-block"  onclick="changeToSmallView()">Show Small View</button>
+          <button  class="btn btn-primary btn-block smallViewDiv"  onclick="changeToSmallView()" style="margin-top: .5rem">Show Small View</button>
         </li>
       </ul>
-      <button class="btn btn-outline-primary adminFunction" id="change-url" onclick="showChangeUrlBox()" style="color: white; margin-left: 8px; display: none;">Change Url</button>
-      <button class="btn btn-outline-primary adminFunction" id="awardBadge" onclick="showAwardBadgeBox()" style="color: white; margin-left: 8px; display: none;">Award Badge</button>
+      <button class="btn btn-outline-primary adminFunction" id="change-url" onclick="showChangeUrlBox()" style="color: white; margin-left: 8px; display: none;">Change Lesson</button>
+      <button class="btn btn-outline-primary adminFunction" id="awardBadge" onclick="showAwardBadgeBox()" style="color: white; margin-left: 8px; display: none;">Badges</button>
       <img src="img/baseline_mic_white_48dp.png" height="28" id="mute-room"  alt="" style="padding: 0px 10px; ">
       <img src="img/baseline_mic_off_white_48dp.png" height="28" id="unmute-room"  alt="" style="display: none; padding: 0px 10px;">
       <img src="img/baseline_videocam_white_48dp.png" height="28" id="hide-room"  alt="" style="padding: 0px 10px;">
@@ -78,7 +78,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Change Url</h5>
+        <h5 class="modal-title">Change Lesson</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hideChangeUrlModal()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -98,16 +98,15 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Award Badge</h5>
+        <h5 class="modal-title">Badges</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hideAwardBadgeModal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="card card-custom gutter-b example example-compact adminFunction" style="padding:8px;margin-bottom:8px; display: none;">
-          <label>Award Badge</label>
+        <div class="adminFunction" style="display: none;">
           <div class="form-group row">
-            <div class="col-lg-4">
+            <div class="col-lg-6">
               <select id="chooseBadge" class="form-control" style="margin-right:16px;" name="builder[layout][header][self][theme]">
                 <option value="">Choose Badge</option>
                 <option value="badge_airplane">Airplane</option>
@@ -117,21 +116,17 @@
                 <option value="badge_ship">Ship</option>
                 <option value="badge_star">Star</option>
               </select>
-              <span class="form-text text-muted">Please choose badge</span>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
               <select id="chooseBadgeUserName" class="form-control" style="margin-right:16px;" name="builder[layout][header][self][theme]">
                 <option value="Abhinav/krazyabhinav@gmail.com">Abhinav(krazyabhinav@gmail.com)</option>
               </select>
-              <span class="form-text text-muted">Please choose user</span>
-            </div>
-            <div class="col-lg-4">
-              <button onclick="awardBadge()" class="btn btn-success" type="button">Award</button>
             </div>
           </div>
         </div>
       </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="awardBadge()">Award</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideAwardBadgeModal()">Close</button>
         </div>
       </div>

@@ -27,10 +27,10 @@ div.participant {
   background: center no-repeat url("data:image/svg+xml;utf8,<svg class='bi bi-person-fill' width='80' height='45' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 100-6 3 3 0 000 6z' clip-rule='evenodd'/></svg>");
   border: 1px solid gray;
   display: inline-flex;
-/*  height: 90px;
-*/  margin: 10px 5px;
-/*  max-width: 160px;
-*/  overflow: hidden;
+  max-height : 200px;
+  margin: 10px 5px;
+  max-width: 250px;
+  overflow: hidden;
 }
 
 div.participant > video {
@@ -42,6 +42,7 @@ div.participant.main {
   margin: 10px 0;
   max-width: 100%;
   width: 100%;
+  max-height: inherit;
 }
 
 div.participant.main > video {
@@ -211,5 +212,19 @@ video#screenpreview {
     display: none !important;
   }
 
+}
+@media (max-width: 700px) {
+   .lessonTypeIframe {
+    height: 120vw !important;
+  }
+}
+
+@media (min-width: 700px) {
+   .lessonTypeIframe {
+    height: 80vh !important;
+  }
+  .positionFixed {
+    position: fixed !important;
+  }
 }
 

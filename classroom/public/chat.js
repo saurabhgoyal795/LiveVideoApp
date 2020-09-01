@@ -300,6 +300,11 @@ function showChangeUrlBox() {
    }
      var wn =document.getElementById('iframe').contentWindow;
    console.log("slideNo:"+slideNo);
+    if(lessonUrl.indexOf("courses.helloenglish.com/lessons/hindiDemo.html") != -1) {
+        $("#iframe").addClass("lessonTypeIframe");
+    } else {
+        $("#iframe").removeClass("lessonTypeIframe");
+    }
      if (url.trim() != lessonUrl.trim()) {
        url = lessonUrl;
        slideNo = slideNumber;
@@ -324,6 +329,7 @@ function showChangeUrlBox() {
          if (lessonUrl.trim().indexOf("?") === -1) {
             lessonUrl = lessonUrl.trim() + "?";
          }
+         console.log("slideNo :"+slideNo);
          $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&hideHeader=true&email="+tempName+"_"+new Date().getTime()+"&header=none&slide="+slideNumber+"&sessionId="+id+"&timerOn=true");
         } else {
          $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&hideHeader=true&email="+tempName+"_"+new Date().getTime()+"&header=none&slide="+slideNumber+"&sessionId="+id); 
@@ -625,6 +631,7 @@ function getUrlVars() {
  }
 
  function changeUrl() {
+   hideChangeUrlModal();
     var jsonObject = {};
     var urlString = $(".urlString").val().trim();
       if (urlString.trim().indexOf("?") === -1) {
@@ -645,13 +652,13 @@ function getUrlVars() {
  }
 
  function changeToLargeView() {
-     const dataObject = {timer: 0, showAnswer: false, currentSlide: 0, largeView: true , showNativeLesson: true}
+     const dataObject = {largeView: true}
      db.collection('liveAppSessionParameters').doc(id).set(dataObject, { merge: true }).then(function() {   
      }).catch(function(error) {});
  }
 
   function changeToSmallView() {
-     const dataObject = {timer: 0, showAnswer: false, currentSlide: 0, largeView: false , showNativeLesson: true}
+     const dataObject = {largeView: false}
      db.collection('liveAppSessionParameters').doc(id).set(dataObject, { merge: true }).then(function() {   
      }).catch(function(error) {});
  }

@@ -187,6 +187,22 @@ var chatIos = getUrlVars()["chatIos"];
     return raw ? parseInt(raw[2], 10) : -1;
 }
 
+function showChangeUrlBox() {
+    $("#changeUrlModal").show()
+  }
+
+  function hideChangeUrlModal() {
+        $("#changeUrlModal").hide()
+  }
+
+  function showAwardBadgeBox() {
+    $("#awardBadgeModal").show()
+  }
+
+  function hideAwardBadgeModal() {
+        $("#awardBadgeModal").hide()
+  }
+
  function getUpdateListener(saveName, roomName) {
    if(id === undefined || id.trim() === ""){
      id = getUrlVars()["roomName"];
@@ -382,6 +398,7 @@ var chatIos = getUrlVars()["chatIos"];
 
  function postMessage_showAwardBadge(userData){
   userData = userData.split("#");
+  $("#awardBadgeModal").hide();
   console.log("postMessage_showAwardBadge:"+userData);
   $(".badgeUserName").text("For "+userData[1]);
   $("#badgeContianer").css("display","");

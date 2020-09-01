@@ -54,6 +54,8 @@
           <button  class="btn btn-primary btn-block"  onclick="changeToSmallView()">Show Small View</button>
         </li>
       </ul>
+      <button class="btn btn-outline-primary adminFunction" id="change-url" onclick="showChangeUrlBox()" style="color: white; margin-left: 8px; display: none;">Change Url</button>
+      <button class="btn btn-outline-primary adminFunction" id="awardBadge" onclick="showAwardBadgeBox()" style="color: white; margin-left: 8px; display: none;">Award Badge</button>
       <img src="img/baseline_mic_white_48dp.png" height="28" id="mute-room"  alt="" style="padding: 0px 10px; ">
       <img src="img/baseline_mic_off_white_48dp.png" height="28" id="unmute-room"  alt="" style="display: none; padding: 0px 10px;">
       <img src="img/baseline_videocam_white_48dp.png" height="28" id="hide-room"  alt="" style="padding: 0px 10px;">
@@ -70,67 +72,70 @@
          </div>
         <iframe class="iframeDiv" id= "iframe" src="" style="height: 100vh;width: 100%; border:0px; display: none;"></iframe>
       </div>
-    <div class="col-xs-12 col-md-3" style="text-align: center">
-        <div class="form-group adminFunction" style="margin-top: 16px; display: none;">
-        <div class="input-group">
-          <input type="text" class="form-control form-control-solid urlString" placeholder="Enter your url...">
-          <button onclick="changeUrl()" class="btn btn-success" type="button">LoadUrl</button>
-        </div>
-      </div> 
-      <div class="card card-custom gutter-b example example-compact adminFunction" style="padding:8px;margin-bottom:8px; display: none;">
-    <label>Award Badge</label>
-    <div class="form-group row">
-      <div class="col-lg-4">
-        <select id="chooseBadge" class="form-control" style="margin-right:16px;" name="builder[layout][header][self][theme]">
-            <option value="">Choose Badge</option>
-            <option value="badge_airplane">Airplane</option>
-            <option value="badge_diamond">Diamond</option>
-            <option value="badge_gift">Gift</option>
-            <option value="badge_rocket">Rocket</option>
-            <option value="badge_ship">Ship</option>
-            <option value="badge_star">Star</option>
-        </select>
-        <span class="form-text text-muted">Please choose badge</span>
+</div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="changeUrlModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change Url</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hideChangeUrlModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="col-lg-4">
-        <select id="chooseBadgeUserName" class="form-control" style="margin-right:16px;" name="builder[layout][header][self][theme]">
-            <option value="Abhinav/krazyabhinav@gmail.com">Abhinav(krazyabhinav@gmail.com)</option>
-        </select>
-        <span class="form-text text-muted">Please choose user</span>
+      <div class="modal-body">
+           <input type="text" class="form-control form-control-solid urlString" placeholder="Enter your url...">
       </div>
-      <div class="col-lg-4">
-        <button onclick="awardBadge()" class="btn btn-success" type="button">Award</button>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="changeUrl()">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideChangeUrlModal()">Close</button>
       </div>
     </div>
-    <!--
-    <div style="font-size:14px;text-align:center;font-weight:bold;">Award Badge</div>
-    <table style="width:100%;">
-      <tr>
-        <td style="width:32%;">
-          <select id="chooseBadge" style="max-width:100px;">
-            <option value="">Choose Badge</option>
-            <option value="badge_airplane">Airplane</option>
-            <option value="badge_diamond">Diamond</option>
-            <option value="badge_gift">Gift</option>
-            <option value="badge_rocket">Rocket</option>
-            <option value="badge_ship">Ship</option>
-            <option value="badge_star">Star</option>
-          </select>
-        </td>
-        <td style="width:32%;">
-          <select id="chooseBadgeUserName" style="max-width:100px;">
-            <option value="">Choose User</option>
-            <option value="Abhinav/krazyabhinav@gmail.com">Abhinav(krazyabhinav@gmail.com)</option>
-          </select>
-        </td>
-        <td>
-          <div type="submit" style="text-align:center;font-size:16px;" class="msger-send-btn" onclick="awardBadge()" >Award</div>
-        </td>
-      </tr>
-    </table>
-    -->
   </div>
 </div>
+
+<div class="modal" tabindex="-1" role="dialog" id="awardBadgeModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change Url</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hideAwardBadgeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card card-custom gutter-b example example-compact adminFunction" style="padding:8px;margin-bottom:8px; display: none;">
+          <label>Award Badge</label>
+          <div class="form-group row">
+            <div class="col-lg-4">
+              <select id="chooseBadge" class="form-control" style="margin-right:16px;" name="builder[layout][header][self][theme]">
+                <option value="">Choose Badge</option>
+                <option value="badge_airplane">Airplane</option>
+                <option value="badge_diamond">Diamond</option>
+                <option value="badge_gift">Gift</option>
+                <option value="badge_rocket">Rocket</option>
+                <option value="badge_ship">Ship</option>
+                <option value="badge_star">Star</option>
+              </select>
+              <span class="form-text text-muted">Please choose badge</span>
+            </div>
+            <div class="col-lg-4">
+              <select id="chooseBadgeUserName" class="form-control" style="margin-right:16px;" name="builder[layout][header][self][theme]">
+                <option value="Abhinav/krazyabhinav@gmail.com">Abhinav(krazyabhinav@gmail.com)</option>
+              </select>
+              <span class="form-text text-muted">Please choose user</span>
+            </div>
+            <div class="col-lg-4">
+              <button onclick="awardBadge()" class="btn btn-success" type="button">Award</button>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideAwardBadgeModal()">Close</button>
+        </div>
+      </div>
+    </div>
 </div>
 <div id="modals">
   <div class="modal fade" id="select-mic" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="select-mic-label" aria-hidden="true">

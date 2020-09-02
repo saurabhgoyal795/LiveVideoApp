@@ -315,7 +315,7 @@ function showChangeUrlBox() {
        //var isAdmin = getUrlVars()["isAdmin"];
        if(isAdmin == true ||  isAdmin == "true"){
          if(lessonUrl.indexOf("courses.helloenglish.com/lessons/hindiDemo.html") != -1){
-           lessonUrl = "https://courses.helloenglish.com/TeacherChat/teacherWebinarDashboard.html"
+           lessonUrl = "https://courses.helloenglish.com/TeacherChat/teacherWebinarDashboard.html?isAdminPreview=false"
          }
          if (lessonUrl.trim().indexOf("?") === -1) {
             lessonUrl = lessonUrl.trim() + "?";
@@ -370,7 +370,17 @@ function showChangeUrlBox() {
         postMessage_showAwardBadge(userData);
    }
    });
-   
+     $("#chooseUrl").html('<option value="">Choose Lesson</option>');
+
+      db.collection("liveSessionLessonCollection").onSnapshot(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            var data = doc.data();
+            if(data.link != undefined && data.title != undefined) {
+              $("#chooseUrl").append('<option value="'+data.link+'">'+data.title+'('+data.category+')</option>');
+            }
+          });
+          
+        });
  }
 
  function saveRegistration(id, userName) {
@@ -637,11 +647,8 @@ function getUrlVars() {
  function changeUrl() {
    hideChangeUrlModal();
     var jsonObject = {};
-    var urlString = $(".urlString").val().trim();
-      if (urlString.trim().indexOf("?") === -1) {
-            urlString = urlString.trim() + "?";
-      }
-   if($(".urlString").val().trim() != ""){
+    var urlString = $("#chooseUrl").val().trim();
+   if(urlString != ""){
      const dataObject = {timer: 0, showAnswer: false, currentSlide: 0, lessonUrl: urlString , showNativeLesson: true}
      db.collection('liveAppSessionParameters').doc(id).set(dataObject, { merge: true }).then(function() {   
      }).catch(function(error) {});

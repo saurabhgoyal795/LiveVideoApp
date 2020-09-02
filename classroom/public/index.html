@@ -65,7 +65,7 @@
   </nav>
   <div class="container-fluid" style="padding-left: 8px;padding-right: 8px;">
     <div class="row" id="room" style="height: auto;">
-      <div id="participants" class="col-xs-12 col-md-2 positionFixed" style="text-align: center;"></div>
+      <div id="participants" class="col-xs-12 col-md-2 positionFixed" style="text-align: center;overflow:auto;height: 100vh"></div>
       <div id="active-participant" class="col-xs-12 col-md-10 offset-md-2" style="text-align: center">
         <div class="participant main videoViewCss">
           <video class= "videoView" autoplay playsinline muted style="height: 33vw;"></video>
@@ -84,7 +84,9 @@
         </button>
       </div>
       <div class="modal-body">
-           <input type="text" class="form-control form-control-solid urlString" placeholder="Enter your url...">
+              <select id="chooseUrl" class="form-control" style="margin-right:16px;" name="builder[layout][header][self][theme]">
+                <option value="Abhinav/krazyabhinav@gmail.com">Abhinav(krazyabhinav@gmail.com)</option>
+              </select>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" onclick="changeUrl()">Save changes</button>

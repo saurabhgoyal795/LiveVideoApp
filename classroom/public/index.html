@@ -25,8 +25,8 @@
 </head>
 <body style="background-color: #56077e;background-image: url(img/bg-7.jpg);background-size: cover;background-attachment: fixed;background-repeat: no-repeat;">
   <div id="badgeContianer" style="display:none;position:absolute;width:200px;top:150px;left:calc(50vw - 100px);text-align:center;z-index:10;">
-    <img class="badgeIcon" src="image/badge_airplane.png" style="width:200px;height:200px;"/>
-    <div class="badgeUserName" style="text-transform: uppercase;width: 184px; margin-top: -60px; position: relative; color: #fff; font-size: 16px; text-align: center; padding: 8px;">For</div>
+    <img class="badgeIcon" src="image/badge_airplane.png" style="width:200px;height:auto;"/>
+    <div class="badgeUserName" style="text-transform: uppercase;width: 200px;margin-top: -48px;position: relative;color: #fff;font-size: 16px;text-align: center;padding: 8px;background: #741b47;font-weight: bolder;font-family: Poppins;box-shadow: 0px 2px 2px  rgba(0,0,0,0.2);opacity: 0.95;border-radius: 7px;">For</div>
   </div>
   <div id="badgeIconsDiv" style="height: 30px;position:absolute;left: 45%;top: 16px;z-index: 10;text-align: center;"> </div>
   <div id="scrollButtonDiv" style="position:fixed;right:30px;bottom:16px;z-index:10; display: none;">
@@ -56,11 +56,11 @@
       </ul>
       <button class="btn btn-outline-primary adminFunction" id="change-url" onclick="showChangeUrlBox()" style="color: white; margin-left: 8px; display: none;">Change Lesson</button>
       <button class="btn btn-outline-primary adminFunction" id="awardBadge" onclick="showAwardBadgeBox()" style="color: white; margin-left: 8px; display: none;">Badges</button>
-      <img src="img/baseline_mic_white_48dp.png" height="28" id="mute-room"  alt="" style="padding: 0px 10px; ">
-      <img src="img/baseline_mic_off_white_48dp.png" height="28" id="unmute-room"  alt="" style="display: none; padding: 0px 10px;">
-      <img src="img/baseline_videocam_white_48dp.png" height="28" id="hide-room"  alt="" style="padding: 0px 10px;">
-      <img src="img/baseline_videocam_off_white_48dp.png" height="28" id="unhide-room"  alt="" style="display: none; padding: 0px 10px;">
-      <button class="btn btn-outline-primary" id="leave-room" style="color: white; margin-left: 8px">Leave Class</button>
+      <img src="img/baseline_mic_white_48dp.png" height="28" id="mute-room" title="Click to mute" alt="" style="padding: 0px 10px; cursor: pointer;">
+      <img src="img/baseline_mic_off_white_48dp.png" height="28" id="unmute-room" title="Click to unmute"  alt="" style="display: none; padding: 0px 10px; cursor: pointer;">
+      <img src="img/baseline_videocam_white_48dp.png" height="28" id="hide-room" title="Click to hide video"  alt="" style="padding: 0px 10px; cursor: pointer;">
+      <img src="img/baseline_videocam_off_white_48dp.png" height="28" id="unhide-room"  title="Click to show video" alt="" style="display: none; padding: 0px 10px; cursor: pointer;">
+      <button class="btn btn-outline-primary" id="leave-room" style="color: white; margin-left: 8px; cursor: pointer;">Leave Class</button>
     </div>
   </nav>
   <div class="container-fluid" style="padding-left: 8px;padding-right: 8px;">

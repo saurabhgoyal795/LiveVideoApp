@@ -25,10 +25,12 @@
  var isChatToShow = true;
  var teacherAction = [];
  var webinar_user_badge = getUrlParam("badge","");
-var chatIos = getUrlVars()["chatIos"];
-   var autoTimer = false;
+  var chatIos = getUrlVars()["chatIos"];
+ var autoTimer = false;
+ var badgesJson = [{ "image": "badge_clean_coder", "name": "Clean Coder", "type": "coding" }, { "image": "badge_code_whisperer", "name": "Code Whisperer", "type": "coding" }, { "image": "badge_builder", "name": "Builder", "type": "coding" }, { "image": "badge_optimizer", "name": "Optimizer", "type": "coding" }, { "image": "badge_div_master", "name": "Div Master", "type": "coding" }, { "image": "badge_quick_fixer", "name": "Quick Fixer", "type": "coding" }, { "image": "badge_super_styler", "name": "Super Styler", "type": "coding" }, { "image": "badge_html_master", "name": "Html Master", "type": "coding" }, { "image": "badge_python_master", "name": "Python Master", "type": "coding" }, { "image": "badge_scratch_champ", "name": "Scratch Champ", "type": "coding" }, { "image": "badge_python_fellow", "name": "Python Fellow", "type": "coding" }, { "image": "badge_web_dev_fellow", "name": "Web Dev Fellow", "type": "coding" }, { "image": "badge_ai_master", "name": "Ai Master", "type": "coding" }, { "image": "badge_data_science_fellow", "name": "Data Science Fellow", "type": "coding" }, { "image": "badge_a_lister", "name": "A-Lister", "type": "coding" }, { "image": "badge_app_developer", "name": "App Developer", "type": "coding" }, { "image": "badge_game_developer", "name": "Game Developer", "type": "coding" }, { "image": "badge_hacktivator", "name": "Hacktivator", "type": "coding" }, { "image": "badge_builder", "name": "Builder", "type": "english" } , { "image": "badge_builder", "name": "Builder", "type": "english" }, { "image": "badge_quick_fixer", "name": "Quick Fixer", "type": "english" }];
 
  $(function(){
+   $(".btn").css("font-size", "0.8rem");
    var sessionId = getUrlVars()["roomName"];
    var name = getUrlVars()["name"];
    isAdmin = getUrlVars()["isAdmin"];
@@ -122,7 +124,7 @@ var chatIos = getUrlVars()["chatIos"];
       var badges = webinar_user_badge.split(",");
       for(var i=0;i<badges.length;i++){
         if(badges[i] != ""){
-          $("#badgeIconsDiv").append('<img src="image/'+badges[i]+'.png" style="width:30px;height:30px;margin-left:2px;" title='+badges[i].split("_")[1]+' />');
+          $("#badgeIconsDiv").append('<img src="image/'+badges[i]+'.png" style="width:30px;height:30px;margin-left:2px;" title='+badges[i].replace("badge_", "").toUpperCase()+' />');
         }
       }
     }
@@ -309,6 +311,17 @@ function showChangeUrlBox() {
     } else {
         $("#iframe").removeClass("lessonTypeIframe");
     }
+     $("#chooseBadge").empty();
+       $("#chooseBadge").append('<option value="">Choose Badge</option>');
+      for(var k= 0; k<badgesJson.length; k++) {
+        var badgeObject = badgesJson[k];
+        if( badgeObject.type == "english"){
+            $("#chooseBadge").append('<option value="'+badgeObject.image+'">'+badgeObject.name+'</option>');
+        } else {
+            $("#chooseBadge").append('<option value="'+badgeObject.image+'">'+badgeObject.name+'</option>');
+        }
+
+      }
      if (url.trim() != lessonUrl.trim()) {
        url = lessonUrl;
        slideNo = slideNumber;
@@ -420,7 +433,7 @@ function showChangeUrlBox() {
   userData = userData.split("#");
   $("#awardBadgeModal").hide();
   console.log("postMessage_showAwardBadge:"+userData);
-  $(".badgeUserName").text("For "+userData[1]);
+  $(".badgeUserName").text("For "+truncateWithEllipses(userData[1], 15));
   $("#badgeContianer").css("display","");
   $(".badgeIcon").attr("src","image/"+userData[0]+".png");
   $("#badgeContianer").addClass("animated animate__zoomInDown");
@@ -430,7 +443,7 @@ function showChangeUrlBox() {
       $("#badgeContianer").css("display","none");
       $("#badgeContianer").removeClass("animated animate__zoomOutDown");
       if(userData[2] == username){
-        $("#badgeIconsDiv").append('<img src="image/'+userData[0]+'.png" style="width:30px;height:30px;margin-left:2px;" title='+userData[0].split('_')[1]+' />')
+        $("#badgeIconsDiv").append('<img src="image/'+userData[0]+'.png" style="width:30px;height:30px;margin-left:2px;" title='+userData[0].replace("_badge","").toUpperCase()+' />')
         if(localStorage["webinar_badge_"+id] == undefined){
           localStorage["webinar_badge_"+id] = userData[0];
         }else{
@@ -441,6 +454,11 @@ function showChangeUrlBox() {
   },3000);
  soundManager.play('pounce_end_30');
 }
+
+function truncateWithEllipses(text, max) 
+{
+    return text.substr(0,max-1)+(text.length>max?'...':''); 
+};
 
 function getUrlParam(parameter, defaultvalue){
     var urlparameter = defaultvalue;

@@ -126,6 +126,8 @@ div.container-fluid {
 }
 
 div.row {
+  margin-left: 0px;
+  margin-right: 0px;
   height: 100%;
 }
 
@@ -217,6 +219,7 @@ video#screenpreview {
    .lessonTypeIframe {
     height: 120vw !important;
   }
+
 }
 
 @media (min-width: 700px) {
@@ -225,6 +228,7 @@ video#screenpreview {
   }
   .positionFixed {
     position: fixed !important;
+    height: 100vh !important;
   }
 }
 

@@ -229,6 +229,8 @@ video#screenpreview {
   .positionFixed {
     position: fixed !important;
     height: 100vh !important;
+    overflow: auto !important;
+    padding-bottom: 300px !important;
   }
 }
 

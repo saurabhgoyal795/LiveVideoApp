@@ -306,8 +306,10 @@ function showChangeUrlBox() {
    }
      var wn =document.getElementById('iframe').contentWindow;
    console.log("slideNo:"+slideNo);
+   var lessonType = "coding";
     if(lessonUrl.indexOf("courses.helloenglish.com/lessons/hindiDemo.html") != -1) {
         $("#iframe").addClass("lessonTypeIframe");
+        lessonType= "english";
     } else {
         $("#iframe").removeClass("lessonTypeIframe");
     }
@@ -315,9 +317,7 @@ function showChangeUrlBox() {
        $("#chooseBadge").append('<option value="">Choose Badge</option>');
       for(var k= 0; k<badgesJson.length; k++) {
         var badgeObject = badgesJson[k];
-        if( badgeObject.type == "english"){
-            $("#chooseBadge").append('<option value="'+badgeObject.image+'">'+badgeObject.name+'</option>');
-        } else {
+        if(badgeObject.type == lessonType){
             $("#chooseBadge").append('<option value="'+badgeObject.image+'">'+badgeObject.name+'</option>');
         }
 

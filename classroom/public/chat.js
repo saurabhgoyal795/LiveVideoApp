@@ -27,7 +27,7 @@
  var webinar_user_badge = getUrlParam("badge","");
   var chatIos = getUrlVars()["chatIos"];
  var autoTimer = false;
- var badgesJson = [{ "image": "badge_clean_coder", "name": "Clean Coder", "type": "coding" }, { "image": "badge_code_whisperer", "name": "Code Whisperer", "type": "coding" }, { "image": "badge_builder", "name": "Builder", "type": "coding" }, { "image": "badge_optimizer", "name": "Optimizer", "type": "coding" }, { "image": "badge_div_master", "name": "Div Master", "type": "coding" }, { "image": "badge_quick_fixer", "name": "Quick Fixer", "type": "coding" }, { "image": "badge_super_styler", "name": "Super Styler", "type": "coding" }, { "image": "badge_html_master", "name": "Html Master", "type": "coding" }, { "image": "badge_python_master", "name": "Python Master", "type": "coding" }, { "image": "badge_scratch_champ", "name": "Scratch Champ", "type": "coding" }, { "image": "badge_python_fellow", "name": "Python Fellow", "type": "coding" }, { "image": "badge_web_dev_fellow", "name": "Web Dev Fellow", "type": "coding" }, { "image": "badge_ai_master", "name": "Ai Master", "type": "coding" }, { "image": "badge_data_science_fellow", "name": "Data Science Fellow", "type": "coding" }, { "image": "badge_a_lister", "name": "A-Lister", "type": "coding" }, { "image": "badge_app_developer", "name": "App Developer", "type": "coding" }, { "image": "badge_game_developer", "name": "Game Developer", "type": "coding" }, { "image": "badge_hacktivator", "name": "Hacktivator", "type": "coding" }, { "image": "badge_builder", "name": "Builder", "type": "english" } , { "image": "badge_builder", "name": "Builder", "type": "english" }, { "image": "badge_quick_fixer", "name": "Quick Fixer", "type": "english" }];
+ var badgesJson = [{ "image": "badge_clean_coder", "name": "Clean Coder", "type": "coding" }, { "image": "badge_code_whisperer", "name": "Code Whisperer", "type": "coding" }, { "image": "badge_builder", "name": "Builder", "type": "coding" }, { "image": "badge_optimizer", "name": "Optimizer", "type": "coding" }, { "image": "badge_div_master", "name": "Div Master", "type": "coding" }, { "image": "badge_quick_fixer", "name": "Quick Fixer", "type": "coding" }, { "image": "badge_super_styler", "name": "Super Styler", "type": "coding" }, { "image": "badge_html_master", "name": "Html Master", "type": "coding" }, { "image": "badge_python_master", "name": "Python Master", "type": "coding" }, { "image": "badge_scratch_champ", "name": "Scratch Champ", "type": "coding" }, { "image": "badge_python_fellow", "name": "Python Fellow", "type": "coding" }, { "image": "badge_web_dev_fellow", "name": "Web Dev Fellow", "type": "coding" }, { "image": "badge_ai_master", "name": "Ai Master", "type": "coding" }, { "image": "badge_data_science_fellow", "name": "Data Science Fellow", "type": "coding" }, { "image": "badge_a_lister", "name": "A-Lister", "type": "coding" }, { "image": "badge_app_developer", "name": "App Developer", "type": "coding" }, { "image": "badge_game_developer", "name": "Game Developer", "type": "coding" }, { "image": "badge_hacktivator", "name": "Hacktivator", "type": "coding" }, { "image": "badge_builder", "name": "Builder", "type": "english" } , { "image": "badge_optimizer", "name": "Optimizer", "type": "english" }, { "image": "badge_quick_fixer", "name": "Quick Fixer", "type": "english" }];
 
  $(function(){
    $(".btn").css("font-size", "0.8rem");
@@ -667,7 +667,7 @@ function getUrlVars() {
     var jsonObject = {};
     var urlString = $("#chooseUrl").val().trim();
    if(urlString != ""){
-     const dataObject = {timer: 0, showAnswer: false, currentSlide: 0, lessonUrl: urlString , showNativeLesson: true}
+     const dataObject = {timer: 0, showAnswer: false, currentSlide: 0, lessonUrl: urlString , showNativeLesson: true, autoTimer: true}
      db.collection('liveAppSessionParameters').doc(id).set(dataObject, { merge: true }).then(function() {   
      }).catch(function(error) {});
     
@@ -927,7 +927,7 @@ function startquizResponseTimer(){
       var key = parseInt(key);
       if(key == slideNo){
         var html = "";
-        if(data[key].topScorer != undefined && data[key].topScorer.length >= 1){
+        if(data[key] != undefined && data[key].topScorer != undefined && data[key].topScorer.length >= 1){
           html += "<div style='border:1px solid #ccc;border-radius:4px;padding:8px;'><label>Correct Response</label>"
           html += "<div>"
           for(var i=0;i<data[key].topScorer.length;i++){

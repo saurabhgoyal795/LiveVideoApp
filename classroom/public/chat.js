@@ -347,9 +347,9 @@ function showChangeUrlBox() {
             lessonUrl = lessonUrl.trim() + "?";
          }
          console.log("slideNo :"+slideNo);
-         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&hideHeader=true&email="+tempName+"_"+new Date().getTime()+"&header=none&slide="+slideNumber+"&sessionId="+id+"&timerOn=true");
+         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&hideHeader=true&email="+tempName+"_"+new Date().getTime()+"&name="+tempName+"&header=none&slide="+slideNumber+"&sessionId="+id+"&timerOn=true");
         } else {
-         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&hideHeader=true&email="+tempName+"_"+new Date().getTime()+"&header=none&slide="+slideNumber+"&sessionId="+id); 
+         $("#iframe").attr('src', lessonUrl.trim()+"&liveSession=true&hideHeader=true&email="+tempName+"_"+new Date().getTime()+"&name="+tempName+"&header=none&slide="+slideNumber+"&sessionId="+id); 
         }
      } else {
        if (slideNumber != slideNo){

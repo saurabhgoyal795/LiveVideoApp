@@ -307,7 +307,7 @@ function showChangeUrlBox() {
      var wn =document.getElementById('iframe').contentWindow;
    console.log("slideNo:"+slideNo);
    var lessonType = "coding";
-    if(lessonUrl.indexOf("courses.helloenglish.com/lessons/hindiDemo.html") != -1) {
+    if(lessonUrl.indexOf("hindiDemo.html") != -1) {
         $("#iframe").addClass("lessonTypeIframe");
         lessonType= "english";
     } else {
@@ -327,8 +327,9 @@ function showChangeUrlBox() {
        slideNo = slideNumber;
        //var isAdmin = getUrlVars()["isAdmin"];
        if(isAdmin == true ||  isAdmin == "true"){
-         if(lessonUrl.indexOf("courses.helloenglish.com/lessons/hindiDemo.html") != -1){
-           lessonUrl = "https://courses.helloenglish.com/TeacherChat/teacherWebinarDashboard.html?isAdminPreview=false"
+         if(lessonUrl.indexOf("hindiDemo.html") != -1 ){
+           // lessonUrl = "https://courses.helloenglish.com/TeacherChat/teacherWebinarDashboard.html?isAdminPreview=false"
+          lessonUrl = "/classroom/TeacherChat/teacherWebinarDashboard.html?isAdminPreview=false"
          }
          if (lessonUrl.trim().indexOf("?") === -1) {
             lessonUrl = lessonUrl.trim() + "?";

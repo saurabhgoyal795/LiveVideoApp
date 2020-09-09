@@ -1,0 +1,233 @@
+
+* {
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+input, textarea /*.contenteditable?*/ {
+    -webkit-touch-callout:default;
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    -ms-user-select:text;
+    user-select:text;
+}
+
+
+
+@keyframes move-left-to-right
+{
+from {margin-left: 960px;}
+to {margin-left:-360px;}
+}
+
+@-webkit-keyframes move-left-to-right /* Safari and Chrome */
+{
+from {margin-left: 960px;}
+to {margin-left:-360px;}
+}
+
+
+.object-move-left-to-right
+{
+animation: move-left-to-right 10s ease-in-out forwards;
+-webkit-animation: move-left-to-right 10s ease-in-out forwards; /* Safari and Chrome */
+}
+
+.whiteButton{
+	background: white;
+	box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.1); 
+}
+
+.whiteButton:active{
+	background: grey;
+	box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.0); 
+}
+
+.pinkButton{
+	text-align: center;color:white; border:10px solid #D91B5B; border-radius: 5px;font-size: 0.5em; box-shadow: 0px 5px 0px rgba(0,0,0,0.2); cursor: pointer;
+	background:#D91B5B; position:absolute;
+}
+
+.lessonIcon{
+	position: absolute; width:120px; height: 120px; border-radius: 60px; background: rgba(200,200,200,1); 
+}
+.inactiveLessonIcon h1{
+	 font-size:2em; line-height: 120px !important; color: rgba(255,255,255,0.4); text-shadow: none!important;
+}
+.activeLessonIcon{
+	animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
+}
+
+
+
+.pieWrapper {
+  position: absolute;
+  margin-left: 0px;
+  margin-top:-130px;
+  background: #d91b5b;
+
+}
+
+.pieWrapper, .pieWrapper * {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.pieWrapper {
+  width:960px;
+  height: 960px;
+}
+
+.pieWrapperTimerOn .pie{
+  width: 50%;
+  height: 100%;
+  transform-origin: 100% 50%;
+  -webkit-transform-origin: 100% 50%;
+  position: absolute;
+  background: #c31852;
+}
+
+.pieWrapperTimerOn .spinner{
+  border-radius: 100% 0 0 100% / 50% 0 0 50%;
+  z-index: 0;
+  border-right: none;
+  -webkit-animation:  rota 30s linear 1;
+  animation: rota 30s linear 1;
+
+}
+
+
+.pieWrapperTimerOn .filler{
+  border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+  left: 50%;
+  opacity: 0;
+  z-index: 1;
+  -webkit-animation: opa 30s steps(1, end) 1 reverse; 
+  animation: opa 30s steps(1, end) 1 reverse;
+ 
+  border-left: none;
+}
+
+.pieWrapperTimerOn .mask{
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  background: inherit;
+  opacity: 1;
+  z-index: 2;
+  -webkit-animation:opa 30s steps(1, end) 1;
+  animation: opa 30s steps(1, end) 1;
+}
+
+ @-webkit-keyframes rota{
+  0% {
+  	-webkit-transform: rotate(0deg);
+
+    transform: rotate(0deg);
+
+  }
+
+  100% {
+  	-webkit-transform:rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes opa {
+  0% {
+    opacity: 1;
+  }
+
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+
+ @keyframes rota{
+  0% {
+  	-webkit-transform: rotate(0deg);
+
+    transform: rotate(0deg);
+
+  }
+
+  100% {
+  	-webkit-transform:rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes opa {
+  0% {
+    opacity: 1;
+  }
+
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+#clockTriangle1{
+	position:absolute;
+width: 0px;
+height: 0px;
+left:480px;
+top:350px;
+border-style: solid;
+border-width: 0 500px 500px 0;
+border-color: transparent rgba(0,0,0,0.2) transparent transparent;
+line-height: 0px;
+_border-color: #000000 rgba(0,0,0,0.2) #000000 #000000;
+_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+animation: clockRotate 30s linear forwards;
+-webkit-animation: clockRotate 30s linear forwards; /* Safari and Chrome */
+
+}
+
+@keyframes clockRotate
+{
+from {border-width: 0 500px 500px 0;}
+to {border-width: 0 1500px 1500px 0;}
+}
+
+@-webkit-keyframes clockRotate /* Safari and Chrome */
+{
+from {border-width: 0 500px 500px 0;}
+to {border-width: 0 1500px 1500px 0;}
+}
+
+
+.animatedLevel{
+width: 3000px;
+height: 700px;
+background:rgba(0,0,0,0.2);
+animation: waterRising 30s ease-in-out forwards;
+-webkit-animation: waterRising 30s ease-in-out forwards; /* Safari and Chrome */
+
+}
+
+
+@keyframes waterRising
+{
+from {margin-top: 700px;}
+to {margin-top: 0px;}
+}
+
+@-webkit-keyframes waterRising /* Safari and Chrome */
+{
+from {margin-top: 700px;}
+to {margin-top: 0px;}
+}
+

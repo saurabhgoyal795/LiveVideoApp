@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Live Session Chat</title>
+  
+  <script src="/metronicTheme/prismjs.bundle.js"></script>
+  <script src="/metronicTheme/scripts.bundle.js"></script>	
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/6.3.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.2/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.2/firebase-functions.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="/TeacherChat/firebase-messaging.js"></script> 
+  <script src="/TeacherChat/gcmSaver.js"></script> 
+  
+  <link href="/metronicTheme/plugins.bundle.css" rel="stylesheet" type="text/css">
+	<link href="/metronicTheme/prismjs.bundle.css" rel="stylesheet" type="text/css">
+	<link href="/metronicTheme/style.bundle.css" rel="stylesheet" type="text/css">
+  <link type="text/css" rel="stylesheet" href="/TeacherChat/chatstyleV1.1.css" />
+
+<style>
+.greenButton{
+	border: none;
+	border-radius: 4px;
+	background: #49C9AF;
+	width: 250px;
+	height: 50px;
+	line-height:48px!important;
+	cursor:pointer;
+	font-size: 25px;
+	color:#2B3E50;
+	box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 0px 0px!important;
+	padding:4px 16px;
+}
+.greenButton:hover,.greenButton:active{
+	background: #53e7c9;
+}
+.greenButton:active{
+	box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1)!important;
+}
+</style>  
+</head>
+<body>
+  <div>
+   <div id="innerContianer">
+    <iframe id="iframe" src="" style=""></iframe>
+    <section id="chatSection" class="msger chatDiv" style="">
+	<!--
+      <form class="msger-inputarea adminFunction" style="display: none;">
+        <input type="text" class="msger-input urlString" placeholder="Enter your url...">
+        <div type="submit" class="msger-send-btn" onclick="changeUrl()" >LoadUrl</div>
+      </form>
+	  -->
+	  
+	  <div class="card card-custom gutter-b example example-compact" style="margin:8px 8px;padding:8px;">
+		  <div class="form-group adminFunction">
+			  <div class="input-group">
+				  <input type="text" class="form-control form-control-solid urlString" placeholder="Enter your url...">
+				  <button onclick="changeUrl()" class="btn btn-success" type="button">LoadUrl</button>
+			  </div>
+		  </div>
+		  <div class="form-group adminFunction slideDiv">
+			  <div class="input-group">
+				  <button style="margin-right:8px;" onclick="previousSlide()" class="btn btn-success btnClassSlide" type="button">Previous Slide</button>
+				  <button onclick="nextSlide()" class="btn btn-success btnClassSlide" type="button">Next Slide</button>
+			  </div>
+		  </div>
+		  <!--
+		  <form class="msger-inputarea adminFunction slideDiv" style="display: none;">
+			<div type="submit" class="msger-send-btn btnClassSlide" onclick="previousSlide()" >Previous Slide</div>
+			<div type="submit" class="msger-send-btn btnClassSlide" onclick="nextSlide()" >Next Slide</div>
+		  </form>
+		  -->
+		   <div class="spinner-border loadingClassSlide" style="display: none;" role="status">
+			  <span class="sr-only">Loading...</span>
+		  </div>
+		  <div class="autoTimerButton">
+			<!--
+			  <form class="msger-inputarea adminFunction timerDiv" style="display: none;">
+				<input type="text" class="msger-input timerInput" placeholder="Start Timer(15s)">
+				<div type="submit" class="msger-send-btn btnClassTimer autoTimerButton" style="font-size:0.8em"  onclick="startTimerWithCheckAnswer()" >Timer & Check Ans</div>
+			  </form>
+			  -->
+			  <div class="form-group adminFunction timerDiv">
+				  <div class="input-group">
+					  <input type="text" class="form-control form-control-solid timerInput" placeholder="Start Timer(15s)">
+					  <button onclick="startTimerWithCheckAnswer()" class="btn btn-success autoTimerButton" type="button">Timer & Check Ans</button>
+				  </div>
+			  </div>
+		  </div>
+		  <div class="spinner-border loadingClassTimer" style="display: none" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+		  <form class="adminFunction" style="display: none;margin-bottom: 16px; margin-top: 16px">
+			<div class="autoTimerButton">
+				<div type="submit" class="msger-send-btn btnClass" style="padding: 4px; font-size:0.8em" onclick="showAnswer()">Check Answer</div>
+			</div>
+			<div class="form-group adminFunction slideDiv">
+			  <div class="input-group">
+				  <button style="margin-right:8px;margin-bottom:8px;" onclick="showOrHideLesson()" class="btn btn-success btnClass showHideLessonText" type="button">Hide/Show Lesson</button>
+				  <button style="margin-right:8px;margin-bottom:8px;" onclick="showOrHideChat()" class="btn btn-success btnClass" type="button">Show/Hide Chat</button>
+				  <button style="margin-right:0px;margin-bottom:8px;" onclick="makeLeaderboard()" class="btn btn-success btnClass" type="button">Make Leaderboards</button>
+			  </div>
+			</div>
+			<!--
+			<div type="submit" class="msger-send-btn btnClass showHideLessonText" style="padding: 4px; font-size:0.8em" onclick="showOrHideLesson()">Hide/Show Lesson</div>
+			<div type="submit" class="msger-send-btn btnClass" style="padding: 4px; font-size:0.8em" onclick="showOrHideChat()">Show/Hide Chat</div>
+			<div type="submit" class="msger-send-btn btnClass" style="padding: 4px; font-size:0.8em" onclick="makeLeaderboard()">Make Leaderboards</div>
+			-->
+			<div class="spinner-border loadingClass" style="display: none;margin-left: 45%" role="status">
+			  <span class="sr-only">Loading...</span>
+			</div>
+		  </form>
+	  </div>
+      <header class="msger-header" style="display: none;">
+		   <div class="msger-header-title">
+			<i class="fas fa-comment-alt"></i> Chat
+		  </div>
+		  <div class="msger-header-options">
+			<span><i class="fas fa-cog"></i></span>
+		  </div>
+		</header>
+
+		<div style="margin:0px 8px;">
+			<main class="msger-chat chatArea" style="border-radius: 8px 8px 0px 0px;">
+			</main>
+
+			<div class="input-group chatArea2">
+			  <input type="text" class="form-control form-control-solid messageInput" placeholder="Enter your message...">
+			  <button onclick="sendMessage()" class="btn btn-success messageSendButton" type="button">Send</button>
+			</div>
+		</div>
+	<!--
+   <form class="msger-inputarea chatArea2">
+     <input type="text" class="msger-input messageInput" placeholder="Enter your message...">
+     <div type="submit" class="msger-send-btn messageSendButton" onclick="sendMessage()" >Send</div>
+   </form>
+   -->
+
+ </section>
+ <div id="teacherPanel2" class="" style="display:none;background:#eee;padding:8px;">
+	<!--
+	<div style="font-size:14px;text-align:center;font-weight:bold;">Next Slide Preview</div>
+	-->
+	<div class="card card-custom gutter-b example example-compact" style="margin-bottom:8px;">
+		<label style="padding:8px;">Next Slide Preview</label>
+		<iframe id="iframe2" src="" style="width:100%;height:30vh;opacity:.5;border: 0px;"></iframe>
+	</div>
+	<div class="card card-custom gutter-b example example-compact" style="padding:8px;margin-bottom:8px;">
+		<label>Award Badge</label>
+		<div class="form-group row">
+			<div class="col-lg-4">
+				<select id="chooseBadge" class="form-control" style="margin-right:16px;" name="builder[layout][header][self][theme]">
+					  <option value="">Choose Badge</option>
+					  <option value="badge_airplane">Airplane</option>
+					  <option value="badge_diamond">Diamond</option>
+					  <option value="badge_gift">Gift</option>
+					  <option value="badge_rocket">Rocket</option>
+					  <option value="badge_ship">Ship</option>
+					  <option value="badge_star">Star</option>
+				</select>
+				<span class="form-text text-muted">Please choose badge</span>
+			</div>
+			<div class="col-lg-4">
+				<select id="chooseBadgeUserName" class="form-control" style="margin-right:16px;" name="builder[layout][header][self][theme]">
+					  <option value="Abhinav/krazyabhinav@gmail.com">Abhinav(krazyabhinav@gmail.com)</option>
+				</select>
+				<span class="form-text text-muted">Please choose user</span>
+			</div>
+			<div class="col-lg-4">
+				<button onclick="awardBadge()" class="btn btn-success" type="button">Award</button>
+			</div>
+		</div>
+		<!--
+		<div style="font-size:14px;text-align:center;font-weight:bold;">Award Badge</div>
+		<table style="width:100%;">
+			<tr>
+				<td style="width:32%;">
+					<select id="chooseBadge" style="max-width:100px;">
+					  <option value="">Choose Badge</option>
+					  <option value="badge_airplane">Airplane</option>
+					  <option value="badge_diamond">Diamond</option>
+					  <option value="badge_gift">Gift</option>
+					  <option value="badge_rocket">Rocket</option>
+					  <option value="badge_ship">Ship</option>
+					  <option value="badge_star">Star</option>
+					</select>
+				</td>
+				<td style="width:32%;">
+					<select id="chooseBadgeUserName" style="max-width:100px;">
+					  <option value="">Choose User</option>
+					  <option value="Abhinav/krazyabhinav@gmail.com">Abhinav(krazyabhinav@gmail.com)</option>
+					</select>
+				</td>
+				<td>
+					<div type="submit" style="text-align:center;font-size:16px;" class="msger-send-btn" onclick="awardBadge()" >Award</div>
+				</td>
+			</tr>
+		</table>
+		-->
+	</div>
+	<div class="card card-custom gutter-b example example-compact" style="padding:8px;margin-bottom:8px;">
+		<label>Student Response</label>
+		<div id="studentResponse" style="font-size:14px;">
+		</div>
+	</div>
+ </div>
+</div>
+
+<div class="modal hide" id="myModal" role="dialog" style="top: 30%">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Link</h4>
+      </div>
+      <div class="modal-body">
+        <input  id="" class="form-control ">
+      </div> 
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div id="registrationPage" style="position:absolute;top:0px;left:0px;width:100%;height:100vh;background:rgba(0,0,0,.8);overflow-y:auto;">
+	<table style="width:100%;max-width:350px;height:calc(100% - 32px);border-radius:8px;margin:16px auto;background:#fff;border-collapse:collapse;box-shadow:2px 2px 2px rgba(0,0,0,.1);">
+		<tr>
+			<td style="color:#2B3E50;padding:0px 16px;text-align:center;">
+				<div style="font-size:20px;margin-bottom:32px;text-align:center;">Registration form</div>
+				
+				<table style="width:100%;border-collapse:collapse;text-align:left;">
+					<tr>
+						<td>
+							<div class="form-group row">
+								<label class="col-lg-3 col-form-label">Name</label>
+								<div class="col-lg-9">
+									<input id="registration_name" type="text" class="form-control form-control-solid" placeholder="Enter your name"/>
+									<span></span>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr class="normalRegistrationRow">
+						<td>
+							<div class="form-group row">
+								<label class="col-lg-3 col-form-label">Email</label>
+								<div class="col-lg-9">
+									<input id="registration_email" type="text" class="form-control form-control-solid" placeholder="Enter your email"/>
+									<span></span>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr class="normalRegistrationRow">
+						<td>
+							<div class="form-group row">
+								<label class="col-lg-3 col-form-label">Employee id</label>
+								<div class="col-lg-9">
+									<input id="registration_employeeId" type="text" class="form-control form-control-solid" placeholder="Enter your employee id"/>
+									<span></span>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr class="normalRegistrationRow">
+						<td>
+							<div class="form-group row">
+								<label class="col-lg-3 col-form-label">Organization</label>
+								<div class="col-lg-9">
+									<select id="registration_organization" class="form-control">
+										<option value="">--choose--</option>
+										<option value="Other">Other</option>
+									</select>
+									<span></span>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr class="kidsRegistrationRow">
+						<td>
+							<div class="form-group row">
+								<label class="col-lg-3 col-form-label">Phone number</label>
+								<div class="col-lg-9">
+									<input id="registration_phone" type="text" class="form-control form-control-solid" placeholder="Enter your phone number"/>
+									<span></span>
+								</div>
+							</div>
+						</td>
+					</tr>
+					
+					<tr class="kidsRegistrationRow">
+						<td>
+							<div class="form-group row">
+								<label class="col-lg-3 col-form-label">Grade</label>
+								<div class="col-lg-9">
+									<select id="registration_grade" class="form-control">
+										<option value="">--choose--</option>
+										<option value="2">Grade 2</option>
+										<option value="3">Grade 3</option>
+										<option value="5">Grade 5</option>
+										<option value="other">Other</option>
+									</select>
+									<span></span>
+								</div>
+							</div>
+						</td>
+					</tr>
+					
+					<tr class="kidsRegistrationRow">
+						<td>
+							<div class="form-group row">
+								<label class="col-lg-3 col-form-label">Section</label>
+								<div class="col-lg-9">
+									<select id="registration_section" class="form-control">
+										<option value="">--choose--</option>
+										<option value="A">Section A</option>
+										<option value="B">Section B</option>
+										<option value="other">Other</option>
+									</select>
+									<span></span>
+								</div>
+							</div>
+						</td>
+					</tr>
+					
+					<!--
+					<tr>
+						<td>
+							<div style="font-size:16px;margin-bottom:10px;">Name</div>
+						</td>
+						<td>
+							<input id="registration_name" placeholder="Enter your name" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+						</td>
+					</tr>
+					<tr class="normalRegistrationRow">
+						<td>
+							<div style="font-size:16px;margin-bottom:10px;">Email</div>
+						</td>
+						<td>
+							<input id="registration_email" type="email" placeholder="Enter your email" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+						</td>
+					</tr>
+					<tr class="normalRegistrationRow">
+						<td>
+							<div style="font-size:16px;margin-bottom:10px;">Employee id</div>
+						</td>
+						<td>
+							<input id="registration_employeeId" placeholder="Enter your employee id" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+						</td>
+					</tr>
+					<tr class="normalRegistrationRow">
+						<td>
+							<div style="font-size:16px;margin-bottom:10px;">Organization</div>
+						</td>
+						<td>
+							<select id="registration_organization" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;">
+								<option value="">--choose--</option>
+								<option value="Other">Other</option>
+							</select>
+						</td>
+					</tr>
+					<tr class="kidsRegistrationRow">
+						<td>
+							<div style="font-size:16px;margin-bottom:10px;">Phone number</div>
+						</td>
+						<td>
+							<input id="registration_phone" placeholder="Enter your phone number" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+						</td>
+					</tr>
+					<tr class="kidsRegistrationRow">
+						<td>
+							<div style="font-size:16px;margin-bottom:10px;">Grade</div>
+						</td>
+						<td>
+							<select id="registration_grade" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;">
+								<option value="">--choose--</option>
+								<option value="2">Grade 2</option>
+								<option value="3">Grade 3</option>
+								<option value="5">Grade 5</option>
+								<option value="other">Other</option>
+							</select>
+						</td>
+					</tr>
+					<tr class="kidsRegistrationRow">
+						<td>
+							<div style="font-size:16px;margin-bottom:10px;">Section</div>
+						</td>
+						<td>
+							<select id="registration_section" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;">
+								<option value="">--choose--</option>
+								<option value="A">Section A</option>
+								<option value="B">Section B</option>
+								<option value="other">Other</option>
+							</select>
+						</td>
+					</tr>
+					-->
+				</table>
+				<!--
+				<div style="font-size:16px;margin-bottom:10px;">Name</div>
+				<input id="registration_name" placeholder="Enter your name" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+				
+				<div style="font-size:16px;margin-bottom:10px;">Email</div>
+				<input id="registration_email" type="email" placeholder="Enter your email" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+				
+				<div style="font-size:16px;margin-bottom:10px;">Employee id</div>
+				<input id="registration_employeeId" placeholder="Enter your employee id" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+				
+				<div style="font-size:16px;margin-bottom:10px;">Organization</div>
+				<select id="registration_organization" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;">
+					<option value="">--choose--</option>
+					<option value="Other">Other</option>
+				</select>
+				-->
+				<button onclick="submitRegistration()" class="btn btn-success" type="button">SUBMIT</button>
+				<!--
+				<div class="greenButton" onclick="submitRegistration()" style="line-height:35px!important;height:40px;width:100%;vertical-align:top;text-align:center;font-size: 16px;margin-top:16px;">SUBMIT</div>
+				-->
+			</td>
+		</tr>
+	</table>
+</div>
+
+<script src="/TeacherChat/chatV1.3.js"></script> 
+<script>
+var kidsRegistrationRow = false;
+$(function(){
+	if (getUrlVars()["kidsRegistration"] != undefined && getUrlVars()["kidsRegistration"] == "true"){
+		kidsRegistrationRow = true;
+		$(".normalRegistrationRow").css("display","none");
+	}else{
+		$(".kidsRegistrationRow").css("display","none");
+	}
+
+	$("#registration_phone").bind("keypress", function (e) {
+          var keyCode = e.which ? e.which : e.keyCode
+               
+          if (!(keyCode >= 48 && keyCode <= 57)) {
+            return false;
+          }else{
+            
+          }
+      });
+	  
+	$("#registration_phone").on('keyup', function (e) {
+		if($("#registration_phone").val().length > 10){
+			$("#registration_phone").val($("#registration_phone").val().substring(0,10));
+		}
+	});
+	checkForRegistration();
+});
+
+function checkForRegistration(){
+	try{
+		if (typeof(Storage) !== "undefined") {
+			updateRegistrationForm();
+			var sessionId = getUrlVars()["sessionId"];
+		   if(sessionId != undefined && sessionId != null && sessionId != "undefined") {
+				if (localStorage["webinar_name"] && localStorage["webinar_email"] 
+					&& localStorage["webinar_employeeId"]  && localStorage["webinar_organization"]) {
+				  
+				}else{
+					
+				} 
+		   }
+			
+		}
+	}catch(err){}
+}
+
+function updateRegistrationForm(){
+	if (localStorage["webinar_name"]){
+		$("#registration_name").val(localStorage["webinar_name"]);
+	}
+	if (localStorage["webinar_email"]){
+		$("#registration_email").val(localStorage["webinar_email"]);
+	}
+	if (localStorage["webinar_employeeId"]){
+		$("#registration_employeeId").val(localStorage["webinar_employeeId"]);
+	}
+	if (localStorage["webinar_organization"]){
+		$("#registration_organization").val(localStorage["webinar_organization"]);
+	}
+	if (localStorage["webinar_phone"]){
+		$("#registration_phone").val(localStorage["webinar_phone"]);
+	}
+	if (localStorage["webinar_grade"]){
+		$("#registration_grade").val(localStorage["webinar_grade"]);
+	}
+	if (localStorage["webinar_section"]){
+		$("#registration_section").val(localStorage["webinar_section"]);
+	}
+	
+}
+
+function checkRegistrationParameters(){
+	if (getUrlVars()["name"] != undefined && getUrlVars()["name"] != ""){
+		$("#registration_name").val(decodeURI(getUrlVars()["name"]));
+	}
+	if (getUrlVars()["email"] != undefined && getUrlVars()["email"] != ""){
+		$("#registration_email").val(getUrlVars()["email"]);
+	}
+	if (getUrlVars()["empId"] != undefined && getUrlVars()["empId"] != ""){
+		$("#registration_employeeId").val(getUrlVars()["empId"]);
+	}
+	if (getUrlVars()["org"] != undefined && getUrlVars()["org"] != ""){
+		$("#registration_organization").val(getUrlVars()["org"]);
+	}
+	if (getUrlVars()["phone"] != undefined && getUrlVars()["phone"] != ""){
+		$("#registration_phone").val(getUrlVars()["phone"]);
+	}
+	if (getUrlVars()["grade"] != undefined && getUrlVars()["grade"] != ""){
+		$("#registration_grade").val(getUrlVars()["grade"]);
+	}
+	if (getUrlVars()["section"] != undefined && getUrlVars()["section"] != ""){
+		$("#registration_section").val(getUrlVars()["section"]);
+	}
+	if (getUrlVars()["name"] != undefined && getUrlVars()["name"] != ""
+		&& getUrlVars()["email"] != undefined && getUrlVars()["email"] != ""
+		&& getUrlVars()["empId"] != undefined && getUrlVars()["empId"] != ""
+		&& getUrlVars()["org"] != undefined && getUrlVars()["org"] != ""){
+		//submitRegistration();
+	}
+}
+
+function submitRegistration(){
+	if($("#registration_name").val().trim() == ""){
+		alert("Please enter your name");
+		return;
+	}
+	if(kidsRegistrationRow){
+		if($("#registration_phone").val().trim() == ""){
+			alert("Please enter your phone number");
+			return;
+		}
+		if($("#registration_grade").val() == null 
+			|| $("#registration_grade").val() == "" || $("#registration_grade").val().toLowerCase().indexOf("choose") > -1){
+			alert("Please choose your grade");
+			return;
+		}
+		if($("#registration_section").val() == null 
+			|| $("#registration_section").val() == "" || $("#registration_section").val().toLowerCase().indexOf("choose") > -1){
+			alert("Please choose your section");
+			return;
+		}
+	}else{
+		if($("#registration_email").val().trim() == ""){
+			alert("Please enter your email");
+			return;
+		}
+		if($("#registration_employeeId").val().trim() == ""){
+			alert("Please enter your employee id");
+			return;
+		}
+		if($("#registration_organization").val() == null 
+			|| $("#registration_organization").val() == "" || $("#registration_organization").val().toLowerCase().indexOf("choose") > -1){
+			alert("Please choose your organization");
+			return;
+		}
+	}
+	
+	var sessionId = id;
+	userName = $("#registration_name").val().trim();
+	console.log("userName:"+userName);
+	try{
+		localStorage["webinar_name"] = $("#registration_name").val().trim();
+		localStorage["webinar_email"] = $("#registration_email").val().trim();
+		localStorage["webinar_employeeId"] = $("#registration_employeeId").val().trim();
+		localStorage["webinar_organization"] = $("#registration_organization").val();
+		localStorage["webinar_phone"] = $("#registration_phone").val().trim();
+		localStorage["webinar_grade"] = $("#registration_grade").val();
+		localStorage["webinar_section"] = $("#registration_section").val();
+	}catch(err){}
+	
+	$("#registrationPage").css("display","none");
+	
+	 var src = $("#iframe").attr('src');
+	 $("#iframe").attr('src',"");
+	 setTimeout(function(){
+		$("#iframe").attr('src',src);
+	 },500);
+	 
+	
+	var d = new Date,
+	dformat = [d.getDate(),d.getMonth()+1,d.getFullYear()].join('/')+' '+[d.getHours(),d.getMinutes(),d.getSeconds()].join(':');
+	var responseData = {
+			WebinarID : sessionId,
+			Name: $("#registration_name").val().trim(),
+			UserID : $("#registration_email").val().trim(),
+			EmployeeID : $("#registration_employeeId").val().trim(),
+			Organization : $("#registration_organization").val(),
+			BatchNumber : getUrlVars()["BatchNumber"],
+			UserAgent : navigator.userAgent,
+			OperatingSystem : getOS(),
+			CreatedAt : dformat
+		};
+		if(kidsRegistrationRow){
+			responseData = {
+				WebinarID : sessionId,
+				Name: $("#registration_name").val().trim(),
+				UserID : $("#registration_phone").val().trim(),
+				Phone : $("#registration_phone").val().trim(),
+				Grade : $("#registration_grade").val(),
+				Section : $("#registration_section").val(),
+				BatchNumber : getUrlVars()["BatchNumber"],
+				UserAgent : navigator.userAgent,
+				OperatingSystem : getOS(),
+				CreatedAt : dformat
+			};
+		}
+		var saveUserRegistrationData = secondaryApp.functions('asia-east2').httpsCallable('saveUserRegistrationData');
+		saveUserRegistrationData(responseData).then(function(result) {
+			console.log("saveUserRegistrationData:",result);
+		  var sanitizedMessage = result.data.text;
+		}).catch(function(error) {
+		  console.log(error);
+		});
+}
+
+function getOS() {
+  var userAgent = window.navigator.userAgent,
+	  platform = window.navigator.platform,
+	  macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+	  windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+	  iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+	  os = null;
+
+  if (macosPlatforms.indexOf(platform) !== -1) {
+	os = 'Mac OS';
+  } else if (iosPlatforms.indexOf(platform) !== -1) {
+	os = 'iOS';
+  } else if (windowsPlatforms.indexOf(platform) !== -1) {
+	os = 'Windows';
+  } else if (/Android/.test(userAgent)) {
+	os = 'Android';
+  } else if (!os && /Linux/.test(platform)) {
+	os = 'Linux';
+  }
+
+  return os;
+}
+
+</script>
+</body>
+
+</html>

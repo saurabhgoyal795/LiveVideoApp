@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="google" value="notranslate" />
+
+<title>Lessons</title>
+<meta property="og:type" content="website">
+<link rel="shortcut icon" media="all" type="../../image/x-icon"
+	href="https://helloenglish.com/images/favicon-96x96.png">
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
+
+<link rel="stylesheet" href="/classroom/lessons/css/animateV1.2.css">
+<link rel="stylesheet" href="/classroom/lessons/css/revealV1.1.css">
+<link rel="stylesheet" href="/classroom/lessons/css/theme/miscV1.css">
+<link rel="stylesheet" href="/classroom/lessons/css/theme/simpleV1.css" id="theme">
+<link rel="stylesheet" href="/classroom/lessons/css/jquery.mobile.structure-1.4.2.min.css" />
+<link rel="stylesheet" href="/classroom/lessons/css/misc_stylesV1.22.css" />
+<link rel="stylesheet" href="/classroom/lessons/css/styleV2.5.css">
+<link rel="stylesheet" href="/classroom/lessons/css/mediaV1.5.css">
+<link rel="stylesheet" href="/classroom/lessons/css/gamesCommonV1.css" />
+
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-functions.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+<!--
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+-->
+<script src="/classroom/jquery-1.11.3.min.js"></script>
+<script src="/classroom/jquery-ui.js"></script>
+<!--
+<script src="js/jqueryV1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
+-->
+<script src="/classroom/lessons/js/confetti.js"></script>
+<script src="/classroom/lessons/js/lesson_mainV6.7.js"></script>
+<script src="/classroom/lessons/js/lessonV4.9.js"></script>
+<script src="/classroom/lessons/js/lesson_commonV2.2.js"></script>
+<script src="/classroom/lessons/js/gamesCommonV1.1.js"></script>
+<script src="/classroom/lessons/js/soundmanager2-jsmin.js"></script>
+
+<script src="/classroom/lessons/js/slide_type/AeroplaneTemplateV1.1.js"></script>
+<script src="/classroom/lessons/js/slide_type/DialogTemplateV2.js"></script>
+<script src="/classroom/lessons/js/slide_type/DropdownTemplateV4.5.js"></script>
+<script src="/classroom/lessons/js/slide_type/JumbleTemplateV3.7.js"></script>
+<script src="/classroom/lessons/js/slide_type/LearningTextOptionsTemplateV4.1.js"></script>
+<script src="/classroom/lessons/js/slide_type/LearningTypingTemplateV1.4.js"></script>
+<script src="/classroom/lessons/js/slide_type/ListenableTypingTemplateV3.8.js"></script>
+<script src="/classroom/lessons/js/slide_type/MultipleCorrectTemplateV1.1.js"></script>
+<script src="/classroom/lessons/js/slide_type/NativeVideoJellyTemplateV4.1.js"></script>
+<script src="/classroom/lessons/js/slide_type/PronunciationTemplateV3.5.js"></script>
+<script src="/classroom/lessons/js/slide_type/TableTemplateV2.1.js"></script>
+<script src="/classroom/lessons/js/slide_type/TipTemplateV2.2.js"></script>
+
+<style type="text/css">
+* {
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+}
+.prograd{
+
+    background: #E6331193; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient( top, #E649C9AF,rgba(51,17,147,0.901) ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top, #E649C9AF, rgba(51,17,147,0.901)); /* For Opera 1	1.1 to 12.0 */
+    background: -moz-linear-gradient(top, #E649C9AF,rgba(51,17,147,0.901)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom, #E649C9AF, rgba(51,17,147,0.901)); /* Standard syntax (must be last) */
+    
+   
+}
+.endScoreTable{
+  margin:auto!important;
+  color: #F8CE46;
+}
+.endScoreTable td:nth-child(2){
+	padding: 10px 0px 10px 10px;
+	text-align: right;
+}
+
+.googleButton{
+	padding: 5px 10px!important;
+    color: rgb(255, 255, 255)!important;
+    font-size: 16px!important;
+    text-align: center!important;
+    cursor:pointer!important;
+    border-radius: 2px!important;
+    border: 1px solid #df4a32!important;
+    box-shadow:rgba(0, 0, 0, 0.1) 2px 2px 2px 0px!important;
+	background: rgb(223,74,50); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(223,74,50,1) 0%, rgba(198,49,25,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(223,74,50,1) 0%,rgba(198,49,25,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(223,74,50,1) 0%,rgba(198,49,25,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#df4a32', endColorstr='#c63119',GradientType=0 ); /* IE6-9 */
+
+}
+.googleButton:hover{
+	webkit-box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+	box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+}
+.facebookButton{
+	background: #3b5998!important;
+	padding: 5px 10px!important;
+    color: rgb(255, 255, 255)!important;
+    font-size: 16px!important;
+    text-align: center!important;
+    cursor:pointer!important;
+    border-radius: 2px!important;
+    border: 1px solid #185895!important;
+    box-shadow:rgba(0, 0, 0, 0.1) 2px 2px 2px 0px!important;
+	background-color: #185996;
+	background-image: -moz-linear-gradient(top,#1a60a2,#154e83);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#1a60a2),to(#154e83));
+	background-image: -webkit-linear-gradient(top,#1a60a2,#154e83);
+	background-image: -o-linear-gradient(top,#1a60a2,#154e83);
+	background-image: linear-gradient(to bottom,#1a60a2,#154e83);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a60a2',endColorstr='#ff154e83',GradientType=0);
+	border-color: #154e83 #154e83 #0a2741;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.facebookButton:hover{
+	webkit-box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+	box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+}
+.hoverDarkAndUnderlineInLoginBox:hover,.hoverDarkAndUnderlineInLoginBox span:hover{
+	color: rgba(43, 62, 80,.54)!important;
+	text-decoration: underline!important;
+}
+.slide-number{
+	display: none!important;
+}
+.progressSmallScreen{
+	display: none!important;
+}
+
+@media screen and (max-width: 768px) {
+	.progressSmallScreen{
+		display: block!important;
+	}
+	.titleHeader{
+		display: none!important;
+	}
+}
+@media screen and (max-width: 950px) {
+	.HLogotitle{
+		display: none!important;
+	}
+}
+</style>
+</head>
+
+<body style="background-color: #F8CE46;">
+<div onclick="void(0);" style="height:100%;">
+<div class="audioDiv" style="display:none;">
+	<audio id="audio" style="display:none;">
+	  <source id="mp3_src" src="" type="audio/mp3"></source>
+	</audio>
+</div>
+<div id="lengthCalculator" style="display:none;"></div>
+	<div id="badgeContianer" style="display:none;position:absolute;width:200px;top:150px;left:calc(50vw - 100px);text-align:center;z-index:10;">
+		<img class="badgeIcon" src="/classroom/image/badge_airplane.png" style="width:200px;height:200px;"/>
+		<div class="badgeUserName" style="width: 184px; margin-top: -60px; position: relative; color: #fff; font-size: 16px; text-align: center; padding: 8px;">For</div>
+	</div>
+	<div id="badgeIconsDiv" style="height: 30px;position:absolute;left: 0px;top: 4px;z-index: 10;text-align: center;">
+		
+	</div>
+	<div id="gameCoinDiv" style="background-image: url('img/award_coin_new.png');width: 30px;height: 30px;position:absolute;background-position: center;background-size: cover;font-size: 16px;line-height: 30px!important;right: 4px;top: 4px;z-index: 10;text-align: center;">0</div>
+	<div id="loadSlideDiv" style="background:rgba(0,0,0,.5);width: 100px;color:#fff;height: 20px;position:absolute;background-position: center;background-size: cover;font-size: 14px;left:calc(50% - 50px);z-index: 10;text-align: center;padding-top: 2px;border-radius: 0px 0px 8px 8px;"></div>
+	<div class="reveal">
+		<div class="progress progressSmallScreen" style="display: none;position: fixed!important;top: 0px!important;left: 0px!important;z-index:100;width: 100%!important;height: 5px!important;">
+		<span style="width: 0px;"></span>
+	</div>
+		<div id="outerSlides" class="slides">
+			<div class="titleHeader">
+				<table style="width: 900px;">
+					<tr>
+						<td style="width: 50%;">
+							<div class="titleHeaderText"></div>
+						</td>
+						<td>
+							<div class="progress" style="display: block;">
+								<span style="width: 0px;"></span>
+							</div>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+			
+			<div class="bottomBar">
+				<!-- 
+				<div class="tipBox">
+					<input type="button" value="TIPS" class="yellowButton"
+						style="width: 100px;">
+				</div>
+				 -->
+				<div class="bottomBarNotificationText">
+					<img class="slideLeftArrow" style="position: relative; z-index: 10000; width: 48px; display: block; margin-top: 26px; opacity: .54;cursor: pointer;display:none;" 
+					src="/classroom/lessons/img/round_keyboard_arrow_left_black_18dp.png" />
+					<div class="appStringObject0053 tryAgainBottomBar" style="display: none;line-height: 100px!important; font-size: 24px; margin-left: 30px; color: #FE5C57;    position: absolute;width: 100px;top: 0px;">Try again</div>
+				</div>
+				
+				<div>
+					<div id="disableBottomBarButton" onclick=""
+						style="background: rgba(255, 255, 255, .7); z-index: 1000; width: 250px; height: 50px; position: absolute; right: 12px; margin-top: 25px; border-radius: 4px;"></div>
+					<input id="bottomBarButton" isDisabled="false" onclick='bottomBarButtonClicked()'
+						class="greenButton appStringValue" type="button" value="Next"
+						style="position: absolute; right: 12px; margin-top: 25px;">
+				</div>
+			</div>
+
+			<div id="tipPopUpDiv" style="background:rgba(0,0,0,.5);width:100%;height:100vh;" class="animated">
+				<table style="width: 100%;height: 100%;">
+					<tr>
+						<td>
+							<div id="tipPopUpInnerDiv" style="background: #FE5C57;max-height: 250px;text-align: right;overflow-y:auto;position:relative; ">
+								<div class="tipPopUpDiv_Title">try Again</div>
+								<div class="tipPopUpDiv_Tip_Text">Tip1:hello</div>
+								<input id="tipPopUpDiv_Button" onclick="hideTipPoup();event.preventDefault();event.stopPropagation();" class="yellowButton appStringValue appStringObject76" type="button" value="OK" style="position: relative; line-height: 48px; cursor: pointer; color: #FE5C57; margin-bottom: 10px; margin-right: 10px; width: 120px;" />
+								<div class="" onclick="hideTipPoup();event.preventDefault();event.stopPropagation();"
+									style="border-radius: 100px; padding:2px 10px 5px 10px; background: rgba(0, 0, 0, .1); color: #2B3E50; position: absolute; right: 5px; top: 5px; text-align: center; cursor: pointer;">
+									<img src="https://storage.helloenglish.com/English-Web/images/ic_clear_white_24dp_2x.png" style="width: 24px;" />
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+	<script type="text/javascript">
+			
+			</script>
+	
+			<div id="translationPopup" class="translationPopupClass"
+				data-arrow="t,b" data-theme="a" style="z-index: 1000;border-radius:4px;">
+				<table width="274px"
+					style="height: 95px; padding: 0px 3px; position: relative; top: 0px; left: 0px; text-align: center; color: #FFFFFF;"
+					cellspacing="0px">
+					<tr>
+						<td
+							style="vertical-align: middle; color: #fff; text-transform: uppercase; text-align: center; font-size: 30px;"
+							colspan="3"><span class="WordTip"></span> <span
+							class="WordInPopUpForFacebook" style="color: #fff;"> </span> <span
+							style="color: #fff;"> = </span> <span
+							class="EnglishWordInPopUpForFacebook" style="color: #fff;"></span>
+						</td>
+					</tr>
+				</table>
+				<table style="width: 100%; position: relative; top: 10px;">
+					<tr>
+						<td>
+							<div class="listenTranslatedWordForFacebook bigIconCircle"
+								id="ca_listen_word"
+								style="background: #49C9AF; margin: auto; position: inherit; height: 55px; width: 55px; left: 110px; top: 90px; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite;">
+								<img src="/classroom/lessons/img/soundIconWhite_2.png"
+									style="margin-left: 12px; margin-top: 13px; width: 30px;">
+							</div>
+						</td>
+						<td class="tipIconTD">
+							<div class="bigIconCircle" id="ca_listen_word"
+								style="background: #F8CE46; margin: auto; position: inherit; height: 55px; width: 55px; left: 110px; top: 90px; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; text-align: center;">
+								<span
+									style="font-size: 40px; color: #FE5C57; font-weight: bolder; text-shadow: none; margin: auto; line-height: 55px!important;">!</span>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<table style="width: 100%; position: relative; top: 15px;">
+					<tr>
+						<td style="width: 50%;"><div
+								style="font-size: 15px; color: #FE5C57; text-align: center;"><%=getappStringObject("67") %>
+							</div></td>
+						<td class="tipIconTD" style="width: 50%; margin: auto;"><div
+								style="font-size: 15px; color: #FE5C57; text-align: center;"><%=getappStringObject("52") %></div></td>
+					</tr>
+				</table>
+				<table style="width: 100%; position: relative; top: 25px;">
+					<tr>
+						<td>
+							<div id="nextWordButtonInTranslationBox"
+								class="yellow-arrow-horizontal " onclick="openNextJellyPopup()"
+								style="background: url('//s3.amazonaws.com/ca_web/Gamification/img/forward-button.png'); margin: auto !important; text-align: center; line-height: 50px; border-radius: 10px; box-shadow: none; width: 150px; height: 50px; font-size: 17px; color: #2B3E50; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite;">
+								<%=getappStringObject("71") %></div>
+						</td>
+					</tr>
+				</table>
+				<div class="ui-popup-arrow-container ui-popup-arrow-t"
+					style="left: 127px;">
+					<div class="ui-popup-arrow ui-body-a ui-overlay-shadow"></div>
+				</div>
+			</div>
+			
+			
+
+		</div>
+		
+		<!-- Slides End -->
+
+		<div class="awardCoinContainer" style="position:absolute;display:none;left:50%;margin-left:-50px;bottom:0px;z-index:1;">
+			<img class="awardCoinImage" style="width:100px;" src="https://storage.helloenglish.com/English-Web/images/award_coin_new.png">
+			<div class="awardCoinText" style="width: 100px; height: 100px; line-height: 100px; text-align: center; font-size: 35px; font-style: italic; position: absolute; top: 36px; font-weight: bold; color: rgba(254, 92, 87, 0.8); left: -5px; text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);">+1</div>
+		</div>
+		<div class="coinfeedbackText" style="position: absolute; font-size: 30px; color: rgb(167, 136, 174); bottom: 0px; width: 100%; text-align: center; z-index: 10; text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); font-style: italic; font-weight: bold; text-rendering: auto; text-transform: uppercase;"></div>
+		
+
+
+
+	</div>
+	<!-- Reveal End -->
+	
+	<div id="registrationPage" style="display:none;z-index:10;position:absolute;top:0px;left:0px;width:100%;height:100vh;background:rgba(0,0,0,.8);overflow-y:auto;">
+		<table style="width:100%;max-width:350px;height:100%;margin:auto;background:#fff;border-collapse:collapse;box-shadow:2px 2px 2px rgba(0,0,0,.1);">
+			<tr>
+				<td style="color:#2B3E50;padding:0px 16px;">
+					<div style="font-size:24px;margin-bottom:32px;text-align:center;">Registration form</div>
+					<table style="width:100%;border-collapse:collapse;">
+						<tr>
+							<td>
+								<div style="font-size:16px;margin-bottom:10px;">Name</div>
+							</td>
+							<td>
+								<input id="registration_name" placeholder="Enter your name" style="height:24px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+							</td>
+						</tr>
+						<tr class="normalRegistrationRow">
+							<td>
+								<div style="font-size:16px;margin-bottom:10px;">Email</div>
+							</td>
+							<td>
+								<input id="registration_email" type="email" placeholder="Enter your email" style="height:24px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+							</td>
+						</tr>
+						<tr class="normalRegistrationRow">
+							<td>
+								<div style="font-size:16px;margin-bottom:10px;width: 110px;">Admission No. /Employee ID</div>
+							</td>
+							<td>
+								<input id="registration_employeeId" placeholder="Enter your admission no./employee id" style="height:24px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+							</td>
+						</tr>
+						<tr class="normalRegistrationRow">
+							<td>
+								<div style="font-size:16px;margin-bottom:10px;">Organization</div>
+							</td>
+							<td>
+								<select id="registration_organization" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;">
+									<option value="">--choose--</option>
+									<option value="Other">Other</option>
+								</select>
+							</td>
+						</tr>
+						<tr class="kidsRegistrationRow">
+							<td>
+								<div style="font-size:16px;margin-bottom:10px;">Phone number</div>
+							</td>
+							<td>
+								<input id="registration_phone" placeholder="Enter your phone number" style="height:24px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+							</td>
+						</tr>
+						<tr class="kidsRegistrationRow">
+							<td>
+								<div style="font-size:16px;margin-bottom:10px;">Grade</div>
+							</td>
+							<td>
+								<select id="registration_grade" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;">
+									<option value="">--choose--</option>
+									<option value="2">Grade 2</option>
+									<option value="3">Grade 3</option>
+									<option value="5">Grade 5</option>
+									<option value="other">Other</option>
+								</select>
+							</td>
+						</tr>
+						<tr class="kidsRegistrationRow">
+							<td>
+								<div style="font-size:16px;margin-bottom:10px;">Section</div>
+							</td>
+							<td>
+								<select id="registration_section" style="width:100%;height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;">
+									<option value="">--choose--</option>
+									<option value="A">Section A</option>
+									<option value="B">Section B</option>
+									<option value="other">Other</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+					<!--
+					<div style="font-size:16px;margin-bottom:10px;">Name</div>
+					<input id="registration_name" placeholder="Enter your name" style="width:calc(100% - 16px);height:24px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+					
+					<div style="font-size:16px;margin-bottom:10px;">Email</div>
+					<input id="registration_email" type="email" placeholder="Enter your email" style="width:calc(100% - 16px);height:24px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+					
+					<div style="font-size:16px;margin-bottom:10px;">Employee id</div>
+					<input id="registration_employeeId" placeholder="Enter your employee id" style="width:calc(100% - 16px);height:24px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;" />
+					
+					<div style="font-size:16px;margin-bottom:10px;">Organization</div>
+					<select id="registration_organization" style="width:calc(100% - 16px);height:40px;padding:8px;border:2px solid #ccc;background:#fff;font-size:16px;margin-bottom:16px;">
+						<option value="">--choose--</option>
+						<option value="Other">Other</option>
+					</select>
+					-->
+					
+					<div class="greenButton" onclick="submitRegistration(this)" style="line-height:40px!important;height:40px;width:calc(100% - 32px);vertical-align:top;text-align:center;font-size: 16px;margin-top:16px;">SUBMIT</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<script>
+	var kidsRegistrationRow = false;
+	$(function(){
+		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+				.test(navigator.userAgent)) {
+		  $(".downloadAppBottomBar").css("display","");
+	  	}
+		if(navigator.userAgent.indexOf('MSAppHost')!=-1 || navigator.userAgent.indexOf('Microsoft')!=-1){
+			$(".downloadAppBottomBar").css("display","none");
+		}
+		if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+			$(".androidDownload").css("display","none");
+		}else{
+			$(".appleDownload").css("display","none");
+		}
+		
+		if(getUrlParam("showRegistrationPage",false) == "true" && getUrlParam("forceHideRegistrationPage","false") == "false"){
+			if (getUrlVars()["kidsRegistration"] != undefined && getUrlVars()["kidsRegistration"] == "true"){
+				kidsRegistrationRow = true;
+				$(".normalRegistrationRow").css("display","none");
+			}else{
+				$(".kidsRegistrationRow").css("display","none");
+			}
+			$("#registrationPage").css("display","");
+			checkForRegistration();
+			checkRegistrationParameters();
+		}
+		
+		$("#registration_phone").bind("keypress", function (e) {
+			  var keyCode = e.which ? e.which : e.keyCode
+				   
+			  if (!(keyCode >= 48 && keyCode <= 57)) {
+				return false;
+			  }else{
+				
+			  }
+		  });
+		  
+		$("#registration_phone").on('keyup', function (e) {
+			if($("#registration_phone").val().length > 10){
+				$("#registration_phone").val($("#registration_phone").val().substring(0,10));
+			}
+		});
+	});
+	</script>
+
+	<script src="/classroom/lessons/js/revealV1.js"></script>
+	
+	<script>
+		
+		function checkForRegistration(){
+			try{
+				if (typeof(Storage) !== "undefined") {
+					updateRegistrationForm();
+					var sessionId = getUrlVars()["sessionId"];
+				   if(sessionId != undefined && sessionId != null && sessionId != "undefined") {
+						if (localStorage["webinar_name"] && localStorage["webinar_email"] 
+							&& localStorage["webinar_employeeId"]  && localStorage["webinar_organization"]) {
+						  
+						}else{
+							
+						} 
+				   }
+					
+				}
+				db.collection("liveAppSessionParameters").doc(webinarId)
+					.onSnapshot(function (doc) {
+						var dataObject = doc.data();
+						console.log("liveAppSessionParameters dataObject",dataObject);
+						if (dataObject.org != undefined) {
+						   var org = dataObject.org;
+						   if (org != undefined) {
+							 if(org.length > 0){
+							   $("#registration_organization").html("");
+							   for(var i=0;i<org.length;i++){
+								 $("#registration_organization").append('<option value="'+org[i]+'">'+org[i]+'</option>')
+							   }
+								updateRegistrationForm();		
+								checkRegistrationParameters();								
+							 }
+
+						   }
+						 }
+					});
+			}catch(err){}
+		}
+
+		function updateRegistrationForm(){
+			if (localStorage["webinar_name"]){
+				$("#registration_name").val(localStorage["webinar_name"]);
+			}
+			if (localStorage["webinar_email"]){
+				$("#registration_email").val(localStorage["webinar_email"]);
+			}
+			if (localStorage["webinar_employeeId"]){
+				$("#registration_employeeId").val(localStorage["webinar_employeeId"]);
+			}
+			if (localStorage["webinar_organization"]){
+				$("#registration_organization").val(localStorage["webinar_organization"]);
+			}
+			if (localStorage["webinar_phone"]){
+				$("#registration_phone").val(localStorage["webinar_phone"]);
+			}
+			if (localStorage["webinar_grade"]){
+				$("#registration_grade").val(localStorage["webinar_grade"]);
+			}
+			if (localStorage["webinar_section"]){
+				$("#registration_section").val(localStorage["webinar_section"]);
+			}
+		}
+		
+		function checkRegistrationParameters(){
+			if (getUrlVars()["name"] != undefined && getUrlVars()["name"] != ""){
+				$("#registration_name").val(decodeURI(getUrlVars()["name"]));
+			}
+			if (getUrlVars()["email"] != undefined && getUrlVars()["email"] != ""){
+				$("#registration_email").val(getUrlVars()["email"]);
+			}
+			if (getUrlVars()["empId"] != undefined && getUrlVars()["empId"] != ""){
+				$("#registration_employeeId").val(getUrlVars()["empId"]);
+			}
+			if (getUrlVars()["org"] != undefined && getUrlVars()["org"] != ""){
+				$("#registration_organization").val(getUrlVars()["org"]);
+			}
+			if (getUrlVars()["phone"] != undefined && getUrlVars()["phone"] != ""){
+				$("#registration_phone").val(getUrlVars()["phone"]);
+			}
+			if (getUrlVars()["grade"] != undefined && getUrlVars()["grade"] != ""){
+				$("#registration_grade").val(getUrlVars()["grade"]);
+			}
+			if (getUrlVars()["section"] != undefined && getUrlVars()["section"] != ""){
+				$("#registration_section").val(getUrlVars()["section"]);
+			}
+		}
+
+		function submitRegistration(){
+			if($("#registration_name").val().trim() == ""){
+				alert("Please enter your name");
+				return;
+			}
+			if(kidsRegistrationRow){
+				if($("#registration_phone").val().trim() == ""){
+					alert("Please enter your phone number");
+					return;
+				}
+				if($("#registration_grade").val() == null 
+					|| $("#registration_grade").val() == "" || $("#registration_grade").val().toLowerCase().indexOf("choose") > -1){
+					alert("Please choose your grade");
+					return;
+				}
+				if($("#registration_section").val() == null 
+					|| $("#registration_section").val() == "" || $("#registration_section").val().toLowerCase().indexOf("choose") > -1){
+					alert("Please choose your section");
+					return;
+				}
+			}else{
+				if($("#registration_email").val().trim() == ""){
+					alert("Please enter your email");
+					return;
+				}
+				if($("#registration_employeeId").val().trim() == ""){
+					alert("Please enter your employee id");
+					return;
+				}
+				if($("#registration_organization").val() == "" || $("#registration_organization").val() == "Choose organization"){
+					alert("Please choose your organization");
+					return;
+				}
+			}
+			
+			var sessionId = getUrlVars()["sessionId"];
+			userName = $("#registration_name").val().trim();
+			try{
+				localStorage["webinar_name"] = $("#registration_name").val().trim();
+				localStorage["webinar_email"] = $("#registration_email").val().trim();
+				localStorage["webinar_employeeId"] = $("#registration_employeeId").val().trim();
+				localStorage["webinar_organization"] = $("#registration_organization").val();
+				localStorage["webinar_phone"] = $("#registration_phone").val().trim();
+				localStorage["webinar_grade"] = $("#registration_grade").val();
+				localStorage["webinar_section"] = $("#registration_section").val();
+			}catch(err){}
+			
+			webinar_user_name = $("#registration_name").val().trim();
+			webinar_user_email = $("#registration_email").val().trim();
+			webinar_user_employeeId = $("#registration_employeeId").val().trim();
+			webinar_user_organization = $("#registration_organization").val();
+			webinar_user_phone = $("#registration_phone").val().trim();
+			webinar_user_grade = $("#registration_grade").val();
+			webinar_user_section = $("#registration_section").val();
+			
+			$("#registrationPage").css("display","none");
+			
+			var d = new Date,
+			dformat = [d.getDate(),
+					   d.getMonth()+1,
+					   d.getFullYear()].join('/')+' '+
+					  [d.getHours(),
+					   d.getMinutes(),
+					   d.getSeconds()].join(':');
+			var responseData = {
+					WebinarID : webinarId,
+					Name: $("#registration_name").val().trim(),
+					UserID : $("#registration_email").val().trim(),
+					EmployeeID : $("#registration_employeeId").val().trim(),
+					Organization : $("#registration_organization").val(),
+					BatchNumber : getUrlParam("BatchNumber",""),
+					UserAgent : navigator.userAgent,
+					OperatingSystem : getOS(),
+					fromApp : getUrlParam("fromApp",""),
+					CreatedAt : dformat
+				};
+				if(kidsRegistrationRow){
+					if(webinar_user_email == "" && webinar_user_phone != ""){
+						webinar_user_email = webinar_user_phone;
+					}
+					responseData = {
+						WebinarID : sessionId,
+						Name: $("#registration_name").val().trim(),
+						UserID : $("#registration_phone").val().trim(),
+						Phone : $("#registration_phone").val().trim(),
+						Grade : $("#registration_grade").val().trim(),
+						Section : $("#registration_section").val().trim(),
+						BatchNumber : getUrlVars()["BatchNumber"],
+						UserAgent : navigator.userAgent,
+						OperatingSystem : getOS(),
+						fromApp : getUrlParam("fromApp",""),
+						CreatedAt : dformat
+					};
+				}
+				var saveUserRegistrationData = defaultProject.functions('asia-east2').httpsCallable('saveUserRegistrationData');
+				saveUserRegistrationData(responseData).then(function(result) {
+					console.log("saveUserRegistrationData:",result);
+				  var sanitizedMessage = result.data.text;
+				}).catch(function(error) {
+				  console.log(error);
+				});
+		}
+		
+		function getOS() {
+		  var userAgent = window.navigator.userAgent,
+			  platform = window.navigator.platform,
+			  macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+			  windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+			  iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+			  os = null;
+
+		  if (macosPlatforms.indexOf(platform) !== -1) {
+			os = 'Mac OS';
+		  } else if (iosPlatforms.indexOf(platform) !== -1) {
+			os = 'iOS';
+		  } else if (windowsPlatforms.indexOf(platform) !== -1) {
+			os = 'Windows';
+		  } else if (/Android/.test(userAgent)) {
+			os = 'Android';
+		  } else if (!os && /Linux/.test(platform)) {
+			os = 'Linux';
+		  }
+
+		  return os;
+		}
+		function isTouchEvent(){
+			var status = false;
+			if(getOS() == "iOS"){
+				status = true;
+			}
+			return status;
+		}
+		
+		function removeSpace(text) {
+			var t = text;
+			t = t.replace(/[!-.,;¡¿?'"]/g, '');
+			t = t.replace(/\//g, '');
+			t = t.replace(/[áāǎàĀÁǍÀ]/g, 'a');
+			t = t.replace(/[éēěèĒÉĚÈ]/g, 'e');
+			t = t.replace(/[ííīíǐìĪÍǏÌ]/g, 'i');
+			t = t.replace(/[óōóǒòŌÓǑÒ]/g, 'o');
+			t = t.replace(/[úüūúǔùǖǘǚǜŪÚǓÙǕǗǙÜ]/g, 'u');
+			t = t.replace(/[ññññ]/g, 'n');
+			t = t.replace(/[ü]/g, 'u');
+			t = t.replace(/^\s+|\s+$/g, '');
+			t = t.replace(/[!-.,;¡¿?'"]/g, '');
+			t = t.replace(/\//g, '');
+			return t;
+		}
+		
+		function initializeReveal(){
+			if(viewportwidth < 1200){
+				Reveal.progressBarWidth = viewportwidth;
+				Reveal.initialize({
+					center : true,
+					// rtl: true,
+
+					transitionSpeed : 'fast',
+					// backgroundTransition: 'slide'
+					width: viewportwidth,
+					height: viewportheight,
+					margin:0,
+					touch: !isWebinar,
+					controls : false,
+					viewDistance : 1,
+					parallaxBackgroundImage : '',
+					dependencies: [
+						]
+
+				});
+				
+			}else{
+				Reveal.initialize({
+					center : true,
+					// rtl: true,
+
+					transitionSpeed : 'fast',
+					// backgroundTransition: 'slide'
+					controls : false,
+					touch: !isWebinar,
+					viewDistance : 1,
+					parallaxBackgroundImage : '',
+					dependencies: [
+						]
+
+				});
+			}
+		}
+
+		function doGoogleLogin(){
+			window.location.href='/GoogleLoginServlet?redirectTo='+window.location.href;
+		}
+
+		function doFacebookLogin(){
+			window.location.href='/FacebookLoginServlet?fbRequest=true&redirectTo='+window.location.href;
+		}
+
+		
+		function openDownloadLink(){
+			if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+					window.parent.location = "https://itunes.apple.com/us/app/hello-english/id1148009516";
+			}else{
+				if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+						.test(navigator.userAgent)) {
+					window.parent.location = "https://play.google.com/store/apps/details?id=com.CultureAlley.japanese.english";
+				}else{
+					window.parent.location = "market://details?id=com.CultureAlley.japanese.english";
+				}
+			}
+			
+		}
+		
+		function openPlayStore(){
+			/*
+			if(reqUrl != ""){
+				window.parent.location = "market://details?id=com.CultureAlley.japanese.english&referrer="+reqUrl;
+			}else{
+					
+			}
+			*/
+			if(isPlayble){
+				try{
+					FbPlayableAd.onCTAClick();
+				}catch (e) {
+					// TODO: handle exception
+				}
+			}else{
+				if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+						.test(navigator.userAgent)) {
+					window.parent.location = "https://play.google.com/store/apps/details?id=com.CultureAlley.japanese.english";
+				}else{
+					window.parent.location = "market://details?id=com.CultureAlley.japanese.english";
+				}
+			}
+			
+		}
+
+		function openIOSStore(){
+			if(isPlayble){
+				try{
+					FbPlayableAd.onCTAClick();
+				}catch (e) {
+					// TODO: handle exception
+				}
+			}else{
+				window.parent.location = "https://itunes.apple.com/us/app/hello-english/id1148009516";
+			}
+		}
+	</script>
+	<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-66024047-1', 'auto');
+		  ga('send', 'pageview');
+		  
+		</script>
+</div>	
+</body>
+</html>
+

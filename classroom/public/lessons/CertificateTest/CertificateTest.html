@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="google" value="notranslate" />
+
+<title>Lessons</title>
+<meta property="og:type" content="website">
+<link rel="shortcut icon" media="all" type="../../image/x-icon"
+	href="https://helloenglish.com/images/favicon-96x96.png">
+
+<link rel="stylesheet"
+	href="css/animateV1.css">
+<link rel="stylesheet" href="css/revealV1.1.css">
+<link rel="stylesheet"
+	href="css/theme/miscV1.css">
+<link rel="stylesheet"
+	href="css/theme/simpleV1.css" id="theme">
+<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.2.min.css" />
+<link rel="stylesheet" href="css/misc_stylesV1.22.css" />
+<link rel="stylesheet" href="css/styleV1.1.css">
+<link rel="stylesheet"href="css/media.css">
+<link rel="stylesheet" href="css/gamesCommonV1.css" />
+
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+<script src="js/jqueryV1.min.js"></script>
+<script src="js/lesson_main.js"></script>
+<!--<script src="js/lessonV2.0.js"></script>-->
+<script src="js/certification_test.js"></script>
+<script src="js/lesson_commonV2.2.js"></script>
+<script src="js/gamesCommonV1.js"></script>
+<script src="js/soundmanager2-jsmin.js"></script>
+<script src="js/slide_type/NativeVideoJellyTemplate.js"></script>
+<script src="js/slide_type/PronunciationTemplate.js"></script>
+<script src="js/slide_type/LearningTextOptionsTemplate.js"></script>
+<script src="js/slide_type/TipTemplate.js"></script>
+<script src="js/slide_type/DialogTemplate.js"></script>
+<script src="js/slide_type/ListenableTypingTemplate.js"></script>
+<script src="js/slide_type/DropdownTemplate.js"></script>
+<script src="js/slide_type/JumbleTemplate.js"></script>
+<script src="js/slide_type/TableTemplateV1.js"></script>
+<script src="js/slide_type/GrammarTemplate.js"></script>
+
+<style type="text/css">
+* {
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+}
+.prograd{
+
+    background: #E6331193; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient( top, #E649C9AF,rgba(51,17,147,0.901) ); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(top, #E649C9AF, rgba(51,17,147,0.901)); /* For Opera 1	1.1 to 12.0 */
+    background: -moz-linear-gradient(top, #E649C9AF,rgba(51,17,147,0.901)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom, #E649C9AF, rgba(51,17,147,0.901)); /* Standard syntax (must be last) */
+    
+   
+}
+.endScoreTable{
+  margin:auto!important;
+  color: #F8CE46;
+}
+.endScoreTable td:nth-child(2){
+	padding: 10px 0px 10px 10px;
+	text-align: right;
+}
+
+.googleButton{
+	padding: 5px 10px!important;
+    color: rgb(255, 255, 255)!important;
+    font-size: 16px!important;
+    text-align: center!important;
+    cursor:pointer!important;
+    border-radius: 2px!important;
+    border: 1px solid #df4a32!important;
+    box-shadow:rgba(0, 0, 0, 0.1) 2px 2px 2px 0px!important;
+	background: rgb(223,74,50); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(223,74,50,1) 0%, rgba(198,49,25,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  rgba(223,74,50,1) 0%,rgba(198,49,25,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  rgba(223,74,50,1) 0%,rgba(198,49,25,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#df4a32', endColorstr='#c63119',GradientType=0 ); /* IE6-9 */
+
+}
+.googleButton:hover{
+	webkit-box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+	box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+}
+.facebookButton{
+	background: #3b5998!important;
+	padding: 5px 10px!important;
+    color: rgb(255, 255, 255)!important;
+    font-size: 16px!important;
+    text-align: center!important;
+    cursor:pointer!important;
+    border-radius: 2px!important;
+    border: 1px solid #185895!important;
+    box-shadow:rgba(0, 0, 0, 0.1) 2px 2px 2px 0px!important;
+	background-color: #185996;
+	background-image: -moz-linear-gradient(top,#1a60a2,#154e83);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#1a60a2),to(#154e83));
+	background-image: -webkit-linear-gradient(top,#1a60a2,#154e83);
+	background-image: -o-linear-gradient(top,#1a60a2,#154e83);
+	background-image: linear-gradient(to bottom,#1a60a2,#154e83);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a60a2',endColorstr='#ff154e83',GradientType=0);
+	border-color: #154e83 #154e83 #0a2741;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.facebookButton:hover{
+	webkit-box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+	box-shadow: 0 1px 1px rgba(0,0,0,.35),inset 0 0 50px 5px rgba(255,255,255,.2)!important;
+}
+.hoverDarkAndUnderlineInLoginBox:hover,.hoverDarkAndUnderlineInLoginBox span:hover{
+	color: rgba(43, 62, 80,.54)!important;
+	text-decoration: underline!important;
+}
+.slide-number{
+	display: none!important;
+}
+.progressSmallScreen{
+	display: none!important;
+}
+@media screen and (max-width: 768px) {
+	.progressSmallScreen{
+		display: block!important;
+	}
+	.titleHeader{
+		display: none!important;
+	}
+}
+@media screen and (max-width: 950px) {
+	.HLogotitle{
+		display: none!important;
+	}
+}
+</style>
+</head>
+
+<body style="background-color: #F8CE46;">
+
+<div class="audioDiv" style="display:none;">
+	<audio id="audio" style="display:none;">
+	  <source id="mp3_src" src="" type="audio/mp3"></source>
+	</audio>
+</div>
+	<div class="reveal">
+		<div class="progress progressSmallScreen" style="display: none;position: fixed!important;top: 0px!important;left: 0px!important;z-index:100;width: 100%!important;height: 5px!important;">
+		<span style="width: 0px;"></span>
+	</div>
+		<div id="outerSlides" class="slides">
+			<div class="titleHeader">
+				<table style="width: 900px;">
+					<tr>
+						<td style="width: 50%;">
+							<div class="titleHeaderText"></div>
+							<table style="width:100%;">
+								<tr>
+									<td style="text-align:left;"><span class="questionCounterText">1 of 15</span></td>
+								</tr>
+							</table>
+						</td>
+						<td style="text-align:right;">
+							<span class="timerCounterText">20:00</span>
+							<div class="progress" style="display: none;">
+								<span style="width: 0px;"></span>
+							</div>
+						</td>
+					</tr>
+				</table>
+				
+			</div>
+			<div class="bottomBar">
+				<!-- 
+				<div class="tipBox">
+					<input type="button" value="TIPS" class="yellowButton"
+						style="width: 100px;">
+				</div>
+				 -->
+				<div class="bottomBarNotificationText">
+					<img class="slideLeftArrow" onclick="disableBackSlide();Reveal.navigateLeft();" style="position: relative; z-index: 10000; width: 48px; display: block; margin-top: 26px; opacity: .54;cursor: pointer;display:none;" 
+					src="img/round_keyboard_arrow_left_black_18dp.png" />
+					<div class="appStringObject0053 tryAgainBottomBar" style="display: none;line-height: 100px!important; font-size: 24px; margin-left: 30px; color: #FE5C57;    position: absolute;width: 100px;top: 0px;">Try again</div>
+				</div>
+				<div>
+					<div id="disableBottomBarButton" onclick=""
+						style="background: rgba(255, 255, 255, .7); z-index: 1000; width: 250px; height: 50px; position: absolute; right: 12px; margin-top: 25px; border-radius: 4px;"></div>
+					<input id="bottomBarButton" isDisabled="false" onclick='bottomBarButtonClicked()'
+						class="greenButton appStringValue" type="button" value="Next"
+						style="position: absolute; right: 12px; margin-top: 25px;">
+				</div>
+				<div id="bottomInstButton"></div>
+			</div>
+
+			<div class="instructionDiv" style="display: none;"></div>
+			
+			<div id="tipPopUpDiv" style="background:rgba(0,0,0,.5);width:100%;height:100vh;" class="animated">
+				
+				<table style="width: 100%;height: 100%;">
+					<tr>
+						<td>
+							<div id="tipPopUpInnerDiv" style="background: #FE5C57;max-height: 250px;text-align: right;overflow-y:auto; ">
+								<div class="tipPopUpDiv_Title">try Again</div>
+								<div class="tipPopUpDiv_Tip_Text">Tip1:hello</div>
+								<input id="" onclick="hideTipPoup();event.preventDefault();event.stopPropagation();" class="yellowButton appStringValue appStringObject76" type="button" value="Continue" style="position: relative; line-height: 48px; cursor: pointer; color: #FE5C57; margin-bottom: 10px; margin-right: 10px; width: 120px;" />
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+	<script type="text/javascript">
+			
+			</script>
+	
+			<div id="translationPopup" class="translationPopupClass"
+				data-arrow="t,b" data-theme="a" style="z-index: 1000;border-radius:4px;">
+				<table width="274px"
+					style="height: 95px; padding: 0px 3px; position: relative; top: 0px; left: 0px; text-align: center; color: #FFFFFF;"
+					cellspacing="0px">
+					<tr>
+						<td
+							style="vertical-align: middle; color: #fff; text-transform: uppercase; text-align: center; font-size: 30px;"
+							colspan="3"><span class="WordTip"></span> <span
+							class="WordInPopUpForFacebook" style="color: #fff;"> </span> <span
+							style="color: #fff;"> = </span> <span
+							class="EnglishWordInPopUpForFacebook" style="color: #fff;"></span>
+						</td>
+					</tr>
+				</table>
+				<table style="width: 100%; position: relative; top: 10px;">
+					<tr>
+						<td>
+							<div class="listenTranslatedWordForFacebook bigIconCircle"
+								id="ca_listen_word"
+								style="background: #49C9AF; margin: auto; position: inherit; height: 55px; width: 55px; left: 110px; top: 90px; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite;">
+								<img src="img/soundIconWhite_2.png"
+									style="margin-left: 12px; margin-top: 13px; width: 30px;">
+							</div>
+						</td>
+						<td class="tipIconTD">
+							<div class="bigIconCircle" id="ca_listen_word"
+								style="background: #F8CE46; margin: auto; position: inherit; height: 55px; width: 55px; left: 110px; top: 90px; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; text-align: center;">
+								<span
+									style="font-size: 40px; color: #FE5C57; font-weight: bolder; text-shadow: none; margin: auto; line-height: 55px!important;">!</span>
+							</div>
+						</td>
+					</tr>
+				</table>
+				<table style="width: 100%; position: relative; top: 15px;">
+					<tr>
+						<td style="width: 50%;"><div
+								style="font-size: 15px; color: #FE5C57; text-align: center;"><%=getappStringObject("67") %>
+							</div></td>
+						<td class="tipIconTD" style="width: 50%; margin: auto;"><div
+								style="font-size: 15px; color: #FE5C57; text-align: center;"><%=getappStringObject("52") %></div></td>
+					</tr>
+				</table>
+				<table style="width: 100%; position: relative; top: 25px;">
+					<tr>
+						<td>
+							<div id="nextWordButtonInTranslationBox"
+								class="yellow-arrow-horizontal " onclick="openNextJellyPopup()"
+								style="background: url('//s3.amazonaws.com/ca_web/Gamification/img/forward-button.png'); margin: auto !important; text-align: center; line-height: 50px; border-radius: 10px; box-shadow: none; width: 150px; height: 50px; font-size: 17px; color: #2B3E50; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite;">
+								<%=getappStringObject("71") %></div>
+						</td>
+					</tr>
+				</table>
+				<div class="ui-popup-arrow-container ui-popup-arrow-t"
+					style="left: 127px;">
+					<div class="ui-popup-arrow ui-body-a ui-overlay-shadow"></div>
+				</div>
+			</div>
+			
+			
+
+		</div>
+		
+		<!-- Slides End -->
+		
+		<!-- Speaking Instructions -->
+		<div class="sampleSectionTemplate2" style="display:none;">
+          <section id="slide||slideCount||" class="SlideType_Audio_2"
+            slideType="SlideType_Audio_2" slideNumber="||slideCount||"
+            data-background="#fff">
+            <div class="sectionInnerContainer" style="overflow-y:auto; ">
+              <div style="background: rgba(73, 189, 236,.3);opacity: .4;
+              font-size: 20px;
+              padding: 16px;
+              text-align: left;
+              position: absolute;
+              right: 0;
+              left: 0;"><span class="attemptCount">Attempt 1 of 3</span><br><span class="listenText">Listen and speak out loud</span></div>
+              <table style="margin:auto;
+              text-align:center;
+              height:100%;">
+                <tr>
+                  <td style="text-align:center;">
+                    <div style="width: 100%;font-size:30px;
+                    margin-top: 20px;">
+                      <span class="questionText">||questionText||</span>
+                    </div>
+                    <div style="width: 100%;margin-top: 20px;">
+                      <div style="position:relative;
+                      width:100px;
+                      height:100px;
+                      border-radius:100%;margin:auto;">
+                        <div style="position:absolute;
+                        width:100px;
+                        height:100px;
+                        border-radius:100%;background:rgba(0,0,0,.1);text-align:center;">
+                          <div class="timer" style="position:absolute;
+                          width: 100px; height: 100px;"></div>
+                          <div style="position: absolute; width: 94px; height: 94px; border-radius: 100%; background: #ccc; text-align: center; top: 3px; left: 3px;">
+                            <img style="width:25px;
+                            margin-top: 10px;" src="../../../images/games/mic.png" />
+                            <div class="timeElapsed" style="color:#fff;
+                            font-size:14px;
+                            text-align: center;
+                            margin-top: 10px;">||timeLimit/60||:||timeLimit%60||</div>
+                          </div>
+                        </div>
+                        <div id="controls" style="position:absolute;">
+                          <img style="visibility:hidden;" id="record"  onclick="toggleRecording(||slideCount||);" class="">
+                          <a style="visibility:hidden;" id="save" href="" download=""></a>
+                        </div>
+                        <div class="countDownDiv" style="position:absolute;
+                        width:100px;
+                        height:100px;
+                        border-radius:100%;background:#2B3E50;
+                        text-align:center;"><table style="width:100%;height:100%;color:#fff;"><tr><td class="countDown" style="color: #fff;
+                        text-align: center;">3</td></tr></table></div>
+                      </div>
+                    </div>
+                    <div class="holdSpacebar" style="width: 100%;font-size: 18px;
+                    margin-top: 25px;
+                    visibility: hidden;">
+                      <span class="questionText">Press and hold spacebar to record, release to stop</span>
+                    </div>
+                    <div class="fetchingScores" style="
+                        font-size: 20px;
+                        margin-top: 54px;
+                        visibility: hidden;
+                    ">Uploading...
+                    </div>
+                  </td>
+                </tr>
+              </table>
+              <div class="pocketScore" style="font-family: monospace !important; position: absolute; right: 25px; top: 100px; width: 390px; text-align: left; font-size: 18px; background: rgba(255,255,200,0.90); "></div>           
+              </div>
+          </section>
+        </div>
+      <div class="sampleSectionTemplate1" style="display:none;">
+        <section id="slide||slideCount||" class="SlideType_Audio_1"
+          slideType="SlideType_Audio_1" slideNumber="||slideCount||"
+          data-background="#fff">
+          <div class="sectionInnerContainer" style="overflow-y:auto; ">
+            <div style=" background: rgba(73, 189, 236,.3); opacity: .4; font-size: 20px; padding: 16px; text-align: left; "><span class="attemptCount">Attempt 1 of 3</span><br/>||shortInstructions||</div>
+            <div style="width: 100%;font-size:30px;
+            margin-top: 50px;">
+              <span class="questionText">||questionText||</span>
+            </div>
+            <div style="width: 100%;margin-top: 20px;">
+              <div style="position:relative;
+              width:100px;
+              height:100px;
+              border-radius:100%;margin:auto;">
+                <div style="position:absolute;
+                width:100px;
+                height:100px;
+                border-radius:100%;background:rgba(0,0,0,.1);text-align:center;">
+                  <div class="timer" style="position:absolute;
+                  width: 100px; height: 100px;"></div>
+                  <div style="position: absolute; width: 94px; height: 94px; border-radius: 100%; background:#ccc; text-align: center; top: 3px; left: 3px;">
+                    <img style="width:25px;
+                    margin-top: 10px;" src="../../../images/games/mic.png" />
+                    <div class="timeElapsed" style="color:#fff;
+                    font-size:14px;
+                    text-align: center;
+                    margin-top: 10px;">||timeLimit/60||:||timeLimit%60||</div>
+                  </div>
+                </div>
+                <div id="controls" style="position:absolute;">
+                  <img style="visibility:hidden;" id="record"  onclick="toggleRecording(||slideCount||);" class="">
+                  <a style="visibility:hidden;" id="save" href="" download=""></a>
+                </div>
+                <div class="countDownDiv" style="position:absolute;
+                width:100px;
+                height:100px;
+                border-radius:100%;background:#2B3E50;
+                text-align:center;"><table style="width:100%;height:100%;color:#fff;"><tr><td class="countDown" style="color: #fff;
+                text-align: center;">3</td></tr></table></div>
+              </div>
+            </div>
+            <div style="width: 100%;font-size: 18px;
+            margin-top: 25px;">
+              <span class="questionText">Press and hold the spacebar to record, and release to stop</span>
+            </div>
+            <div class="fetchingScores" style="
+                font-size: 20px;
+                margin-top: 54px;
+                visibility: hidden;
+            ">Fetching scores...
+            </div>
+            <div class="pocketScore" style="font-family: monospace !important; position: absolute; right: 25px; top: 100px; text-align: left; font-size: 18px; background: rgba(255,255,200,0.90); "></div>
+          </div>
+        </section>
+      </div>
+		<!-- End -->
+
+		<div class="awardCoinContainer" style="position:absolute;display:none;left:50%;margin-left:-50px;bottom:0px;z-index:1;">
+			<img class="awardCoinImage" style="width:100px;" src="https://storage.helloenglish.com/English-Web/images/award_coin_new.png">
+			<div class="awardCoinText" style="width: 100px; height: 100px; line-height: 100px; text-align: center; font-size: 35px; font-style: italic; position: absolute; top: 36px; font-weight: bold; color: rgba(254, 92, 87, 0.8); left: -5px; text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);">+1</div>
+		</div>
+		<div class="coinfeedbackText" style="position: absolute; font-size: 30px; color: rgb(167, 136, 174); bottom: 0px; width: 100%; text-align: center; z-index: 10; text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); font-style: italic; font-weight: bold; text-rendering: auto; text-transform: uppercase;"></div>
+		
+
+
+
+	</div>
+	<!-- Reveal End -->
+	
+	<script>
+	$(function(){
+		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+				.test(navigator.userAgent)) {
+		  $(".downloadAppBottomBar").css("display","");
+	  	}
+		if(navigator.userAgent.indexOf('MSAppHost')!=-1 || navigator.userAgent.indexOf('Microsoft')!=-1){
+			$(".downloadAppBottomBar").css("display","none");
+		}
+		if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+			$(".androidDownload").css("display","none");
+		}else{
+			$(".appleDownload").css("display","none");
+		}
+	});
+	</script>
+
+	<script src="js/revealV1.js"></script>
+	
+	<script>
+		function removeSpace(text) {
+			var t = text;
+			t = t.replace(/[!-.,;¡¿?'"]/g, '');
+			t = t.replace(/\//g, '');
+			t = t.replace(/[áāǎàĀÁǍÀ]/g, 'a');
+			t = t.replace(/[éēěèĒÉĚÈ]/g, 'e');
+			t = t.replace(/[ííīíǐìĪÍǏÌ]/g, 'i');
+			t = t.replace(/[óōóǒòŌÓǑÒ]/g, 'o');
+			t = t.replace(/[úüūúǔùǖǘǚǜŪÚǓÙǕǗǙÜ]/g, 'u');
+			t = t.replace(/[ññññ]/g, 'n');
+			t = t.replace(/[ü]/g, 'u');
+			t = t.replace(/^\s+|\s+$/g, '');
+			t = t.replace(/[!-.,;¡¿?'"]/g, '');
+			t = t.replace(/\//g, '');
+			return t;
+		}
+		
+		function initializeReveal(){
+			if(viewportwidth < 500){
+				Reveal.progressBarWidth = viewportwidth;
+				Reveal.initialize({
+					center : true,
+					// rtl: true,
+
+					transitionSpeed : 'fast',
+					// backgroundTransition: 'slide'
+					width: viewportwidth,
+					height: viewportheight,
+					touch: true,
+					controls : false,
+					viewDistance : 1,
+					parallaxBackgroundImage : ''
+
+				});
+				
+			}else{
+				Reveal.initialize({
+					center : true,
+					// rtl: true,
+
+					transitionSpeed : 'fast',
+					// backgroundTransition: 'slide'
+					controls : false,
+					touch: true,
+					viewDistance : 1,
+					parallaxBackgroundImage : ''
+
+				});
+			}
+		}
+
+		function doGoogleLogin(){
+			window.location.href='/GoogleLoginServlet?redirectTo='+window.location.href;
+		}
+
+		function doFacebookLogin(){
+			window.location.href='/FacebookLoginServlet?fbRequest=true&redirectTo='+window.location.href;
+		}
+
+		
+		function openDownloadLink(){
+			if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+					window.parent.location = "https://itunes.apple.com/us/app/hello-english/id1148009516";
+			}else{
+				if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+						.test(navigator.userAgent)) {
+					window.parent.location = "https://play.google.com/store/apps/details?id=com.CultureAlley.japanese.english";
+				}else{
+					window.parent.location = "market://details?id=com.CultureAlley.japanese.english";
+				}
+			}
+			
+		}
+		
+		function openPlayStore(){
+			/*
+			if(reqUrl != ""){
+				window.parent.location = "market://details?id=com.CultureAlley.japanese.english&referrer="+reqUrl;
+			}else{
+					
+			}
+			*/
+			if(isPlayble){
+				try{
+					FbPlayableAd.onCTAClick();
+				}catch (e) {
+					// TODO: handle exception
+				}
+			}else{
+				if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+						.test(navigator.userAgent)) {
+					window.parent.location = "https://play.google.com/store/apps/details?id=com.CultureAlley.japanese.english";
+				}else{
+					window.parent.location = "market://details?id=com.CultureAlley.japanese.english";
+				}
+			}
+			
+		}
+
+		function openIOSStore(){
+			if(isPlayble){
+				try{
+					FbPlayableAd.onCTAClick();
+				}catch (e) {
+					// TODO: handle exception
+				}
+			}else{
+				window.parent.location = "https://itunes.apple.com/us/app/hello-english/id1148009516";
+			}
+		}
+	</script>
+	<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-66024047-1', 'auto');
+		  ga('send', 'pageview');
+		  
+		</script>
+	
+</body>
+</html>
+

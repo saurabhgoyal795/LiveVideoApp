@@ -1,0 +1,483 @@
+@media (max-width: 500px) {
+	
+	.forumLink{
+		right: 175px!important;
+	}
+	.forumLink div{
+		margin: 14px 0px!important;
+	}
+	
+	.iframe-shadow-container .loadingDiv{
+		top:49%!important;
+	}
+	
+	.slideLeftArrow{
+		display: inline-block!important;
+	}
+	
+	.progress{
+		height: 5px!important;
+	    left: 0px!important;
+	    top: 0px!important;
+	    position: initial!important;
+	}
+	
+    .sectionInnerContainer{
+    	overflow-y:auto!important;
+    	overflow-x:hidden!important;  
+    }
+    
+    .tryAgainBottomBar{
+    	position: absolute;
+	    top: 36px;
+	    line-height: inherit!important;
+	    width: 80px;
+    }
+    
+    #tipPopUpDiv{
+    	left: -50%!important;
+    	top: -50%!important;
+    }
+    #tipPopUpDiv input{
+    	font-size: 20px!important;
+	    width: 80px!important;
+	    line-height: 40px!important;
+	    height: 40px!important;
+    }
+    .tipPopUpDiv_Title{
+    	font-size: 25px!important;
+    	padding: 10px!important;
+    }
+    .tipPopUpDiv_Tip_Text{
+    	font-size: 20px!important;
+    	max-width: inherit!important;
+    }
+    
+    .bottomBar{
+    	width: 100%!important;
+	    left: -50%!important;
+	    top: 50%!important;
+	    margin-top: -56px!important;
+	    height: 56px!important;
+    }
+    
+    .bottomBarNotificationText{
+    	margin-top: -20px!important;
+    }
+    
+    #disableBottomBarButton{
+    	margin-top: 10px!important;
+    	width: 150px!important;
+    	height: 40px!important;
+    }
+    
+    #bottomBarButton{
+    	margin-top: 10px!important;
+    	width: 150px!important;
+	    height: 40px!important;
+	    font-size: 20px!important;
+	    line-height: 40px!important;
+    }
+    
+    .titleHeader table{
+    	width:100%!important;
+    }
+    
+    .titleHeaderText:parent{
+    	display: none!important;
+    }
+    
+    .titleText{
+    	font-size: 20px!important;
+    	margin: 0px 16px!important;
+    }
+    
+    .slideType_First_Slide_LessonTitle{
+    	font-size: 25px!important;
+    }
+    
+    .nameInputBox input{
+    	width: 80%!important;
+	    padding: 10px 5%!important;
+	    height: 50px!important;
+	    font-size: 20px!important;
+    }
+    
+    .translationTextDiv{
+    	padding: 0px 16px!important;
+    }
+    
+    .translationTextDiv table table td {
+	    font-size: 20px!important;
+	    vertical-align: middle!important;
+	}
+	
+	.SlideType_Choose_4_without_Image .titleContainer{
+		padding:10px 0px!important; 
+	}
+	
+	.SlideType_Choose_4_without_Image_QuestionText,
+	.SlideType_Choose_4_without_Image_QuestionText_WhenHidden{
+		font-size: 20px!important;
+		margin: 0px 16px!important;
+    	text-align: left!important;
+	}
+	
+	.SlideType_Choose_4_without_Image_Div{
+		width: 90%!important;
+    	height: inherit!important;
+    	max-height: 80px!important;
+	}
+	
+	.SlideType_Choose_4_without_Image_Div .SlideType_Choose_4_without_Image_Text {
+		font-size: 20px!important;
+		margin: 16px!important;
+		text-align: left!important;
+	}
+	
+	.SlideType_Choose_4_without_Image_Image_Circle_UnChecked {
+	    border: 2px solid rgba(255,255,255,.54)!important;
+	}
+	
+	.SlideType_Choose_4_without_Image_Image_Circle {
+	    width: 14px!important;
+	    height: 14px!important;
+	}
+	
+	.SlideType_Choose_4_without_Image_Image_Circle_Checked {
+	    border: 2px solid rgba(255,255,255,.54)!important;
+	}
+	
+	.SlideType_Choose_4_without_Image_Image_Circle_Correct {
+	    border: 2px solid rgba(0, 0, 0,.3)!important;
+	}
+	
+	.SlideType_Choose_4_without_Image_TextTD{
+		min-width: inherit!important;
+	}
+	
+	.SlideType_Choose_4_without_Image_ImageTD{
+		width: 24px!important;
+	}
+	
+	.SlideType_Choose_2_without_Top_Photo_title_table{
+		width: inherit!important;
+	}
+	
+	.SlideType_Choose_2_without_Top_Photo_QuestionText,
+	.SlideType_Choose_2_without_Top_Photo_QuestionText_WhenHidden{
+		font-size: 20px!important;
+		margin: 0px 16px!important;
+    	text-align: left!important;
+	}
+	
+	.SlideType_Choose_2_without_Top_Photo_Div{
+		width: 90%!important;
+    	height: inherit!important;
+    	max-height: 80px!important;
+	}
+	
+	.SlideType_Choose_2_without_Top_Photo_Div .SlideType_Choose_2_without_Top_Photo_Text {
+		font-size: 20px!important;
+		margin: 16px!important;
+		text-align: left!important;
+	}
+	
+	.SlideType_Choose_2_without_Top_Photo_Image_Circle_UnChecked {
+	    border: 2px solid rgba(255,255,255,.54)!important;
+	}
+	
+	.SlideType_Choose_2_without_Top_Photo_Image_Circle {
+	    width: 14px!important;
+	    height: 14px!important;
+	}
+	
+	.SlideType_Choose_2_without_Top_Photo_Image_Circle_Checked {
+	    border: 2px solid rgba(255,255,255,.54)!important;
+	}
+	
+	.SlideType_Choose_2_without_Top_Photo_Image_Circle_Correct {
+	    border: 2px solid rgba(0, 0, 0,.3)!important;
+	}
+	
+	.SlideType_Choose_2_without_Top_Photo_TextTD{
+		min-width: inherit!important;
+	}
+	
+	.SlideType_Choose_2_without_Top_Photo_ImageTD{
+		width: 24px!important;
+	}
+	
+	.SlideType_Choose_2_without_Top_Photo .titleContainer{
+		padding:10px 0px!important; 
+	}
+	
+	.SlideType_Choose_4_with_Image .titleContainer{
+		padding:10px 0px!important; 
+	}
+	
+	.SlideType_Jumble_Slide .QuestionText{
+		font-size: 25px!important;
+		padding: 20px 0px 0px 0px!important;
+	}
+	
+	.SlideType_Jumble_Slide #jumbleTarget,
+	.SlideType_Jumble_Slide #jumbleSource{
+		width: 90%!important;
+		margin: 16px 0px 0px 0px!important;
+		min-height: 70px!important;
+		max-height: 100px!important;
+	}
+	
+	.SlideType_Jumble_Slide #jumbleSource{
+		margin-top: 16px!important;
+	}
+	
+	.answerListClass,.animatedListClass {
+	    padding: 7px 8px!important;
+	    margin: 5px 10px!important;
+	}
+	#chatBox{
+	}
+	.SlideType_Dialog #title_dialog{
+		font-size: 25px!important;
+		padding: 10px 0px 5px 0px!important;
+	}
+	#chatBox .monster{
+		display: none!important;
+	}
+	#chatBox .tail{
+		width: 30px!important;
+	}
+	
+	.SlideType_Dialog .dialogText{
+		padding: 10px!important;
+	    max-width: 50%!important;
+	    font-size: 18px!important;
+	}
+	
+	.SlideType_Dialog .listenDialog{
+		width: 40px!important;
+    	height: 40px!important;
+    	top:0px;
+	}
+	.SlideType_Dialog .listenDialog img{
+		width: 20px!important;
+		margin-top: 0px!important;
+	}
+	
+	.SlideType_Dialog .title_dialog{
+		font-size: 25px;
+		    margin-top: 10px!important;
+	}
+    
+    .SlideType_Tip_Slide_Inner_Container{
+    	margin: 0px!important;
+	    position: inherit!important;
+	    width: inherit!important;
+	    border-radius: 0px!important;
+	    background: transparent!important;
+    }
+    .SlideType_Tip_Slide_tipText .tip1,.SlideType_Tip_Slide_tipText .tip2{
+    	font-size: 20px!important;
+    }
+    .SlideType_Tip_Slide .monster{
+    	display: none!important;
+    }
+    
+    .SlideType_Transaltion_Box_Question{
+    	width: 100%!important;
+	    float: none!important;
+	    text-align: left!important;
+	    height: initial!important;
+	    font-size: 25px!important;
+	    margin-top: 30px!important;
+    }
+    
+    .SlideType_Transaltion_Box .titleTextDiv{
+    	padding: 16px 0px!important;
+    }
+    
+    .SlideType_Transaltion_Box #SlideType_Transaltion_Box_Listen_Text + div{
+    	display: none!important;
+    }
+    
+    .SlideType_Transaltion_Box_InputBoxOuterDiv{
+    	border: none!important;
+	    height: initial!important;
+	    width: 90%!important;
+    }
+    .SlideType_Transaltion_Box #SlideType_Transaltion_Box_InputBox{
+    	width: inherit!important;
+	    padding:10px!important;
+	    height: inherit!important;
+	    border-radius: 4px!important;
+	    font-size: 25px!important;
+	    margin: 0px 16px!important;
+    }
+    
+    .endScoreTable{
+    	width: 93%!important;
+    }
+    .endScoreTable td,.coinsTableFeebackLost,.coinsTableFeebackWon,.coinsTableFeebackForTest{
+    	font-size: 16px!important;
+    }
+    .SlideType_Last_Slide .greenButton{
+    	font-size: 20px!important;
+    	min-width: 93%!important;
+    }
+    
+    .SlideType_Jelly .monsterBarNotification{
+    	display: none!important;
+    }
+    
+    .SlideType_Missing_Word_QuestionText{
+		font-size: 20px!important;
+		margin: 0px auto 20px auto!important;
+    	text-align: center!important;
+    	width: 90%!important;
+	}
+	
+	.SlideType_Missing_Word_Div{
+		width: 90%!important;
+    	height: inherit!important;
+	}
+	
+	.SlideType_Missing_Word_Div .SlideType_Missing_Word_Text {
+		font-size: 20px!important;
+		margin: 16px!important;
+		text-align: left!important;
+	}
+	
+	.SlideType_Missing_Word_Image_Circle_UnChecked {
+	    border: 2px solid rgba(255,255,255,.54)!important;
+	}
+	
+	.SlideType_Missing_Word_Image_Circle {
+	    width: 14px!important;
+	    height: 14px!important;
+	}
+	
+	.SlideType_Missing_Word_Image_Circle_Checked {
+	    border: 2px solid rgba(255,255,255,.54)!important;
+	}
+	
+	.SlideType_Missing_Word_Image_Circle_Correct {
+	    border: 2px solid rgba(0, 0, 0,.3)!important;
+	}
+	
+	.SlideType_Missing_Word_TextTD{
+		min-width: inherit!important;
+	}
+	
+	.SlideType_Missing_Word_ImageTD{
+		width: 24px!important;
+	}
+    
+    .SlideType_Special_Slide_Inner_Container{
+    	width: 95%!important;
+	    position: inherit!important;
+	    margin: auto!important;
+	    margin-top: 20px!important;
+    }
+    
+    .SlideType_Special_Slide_Inner_Container .title{
+    	margin-top: 20px!important;
+    	margin-bottom: 20px!important;
+    }
+    
+    .SlideType_Special_Slide_Inner_Container table{
+    	font-size: 18px!important;
+    }
+    
+    .SlideType_Special_Slide_Inner_Container table td{
+    	font-size: 18px!important;
+    	padding: 5px!important;
+    }
+    
+    .SlideType_Listen_Box .titleTextDiv{
+    	padding:20px 0px 0px 0px!important; 
+    }
+    .SlideType_Listen_Box #listenTable{
+    	width: 92%!important;
+    	border-spacing: 0px 5px!important;
+    }
+    .SlideType_Listen_Box .speakWordText{
+    	width: initial!important;
+	    font-size: 16px!important;
+	    padding: 5px!important;
+	    border-radius: 4px 0px 0px 4px!important;
+    }
+    .SlideType_Listen_Box .SlideType_Listen_Box_TranslationDiv{
+    	font-size: 16px!important;
+    }
+    .SlideType_Listen_Box #listenTable .speakWordIcon{
+        border-radius: 0px 4px 4px 0px!important;
+        padding-right: 10px!important;
+    }
+    .SlideType_Choose_2_with_Top_Photo .videoContainer ,.SlideType_Choose_2_with_Top_Photo .questionContainer{
+    	width: 100%!important;
+    }
+    .SlideType_Jelly .videoContainer ,.SlideType_Jelly .questionContainer{
+    	width: 100%!important;
+    }
+    .SlideType_Choose_2_with_Top_Photo .videoContainer iframe,.SlideType_Choose_2_with_Top_Photo .questionContainer  iframe{
+    	height:100wh!important;
+    }
+    
+}
+@media (max-width: 300px) {
+	 .greenButton {
+        width: 200px!important;
+        margin-bottom:16px !important;
+    }
+     .translationTextDiv table table td {
+	    font-size: 16px!important;
+	    vertical-align: middle!important;
+	}
+	.SlideType_Jelly .jellySlideSoundIcon {
+	    width: 40px !important;
+        height: 40px !important;
+        border-radius: 80px !important;
+	}
+	.SlideType_Jelly .jellySlideSoundIcon img{
+		margin-top:0px !important;
+		width:20px !important;
+		
+	}
+	.SlideType_Jelly .jellySlidewordTipIcon{
+	  width: 40px !important;
+      height: 40px !important;
+      border-radius: 80px !important;
+	}
+	.listenSentenceResponsive{
+	  margin-top:0px !important;
+	}
+	 #disableBottomBarButton{
+    	margin-top: 8px!important;
+    	width: 120px!important;
+    	height: 40px!important;
+    }
+    
+    #bottomBarButton{
+    	margin-top: 8px!important;
+    	width: 120px!important;
+	    height: 40px!important;
+	    font-size: 16px!important;
+	    line-height: 40px!important;
+    }
+     .tipPopUpDiv_Tip_Text{
+    	font-size: 16px!important;
+    	max-width: inherit!important;
+    }
+     .tipPopUpDiv_Title{
+    	font-size: 20px!important;
+    	padding: 10px!important;
+    }
+      #tipPopUpDiv input{
+    	font-size: 16px!important;
+	    width: 80px!important;
+	    line-height: 32px!important;
+	    height: 32px!important;
+    }
+}

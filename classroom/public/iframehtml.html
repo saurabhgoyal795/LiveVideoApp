@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<script src="jquery-2.2.4.min.js"></script>
+<script>
+ $(function(){
+try{
+	console.log("called in try");
+	localStorage
+	} catch(err){
+	console.log("called in catch", err);
+	window.parent.calllert();
+	}
+ })
+	
+</script>
+</body>
+</html>

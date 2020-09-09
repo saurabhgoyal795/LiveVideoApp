@@ -1,0 +1,140 @@
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 12px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .3);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;  
+    background-color: #ffffff; 
+}
+body {
+  background-color: #fff;
+  font-family: Poppins;
+  background-size: cover; 
+  background-attachment: fixed; 
+  background-repeat: no-repeat;
+}
+.blocklyText{
+	font-family: Poppins!important;
+	font-size:10pt!important;
+}
+.buttonFormatted {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    line-height: 1;
+    color: #92278f;
+    background-color: #FFC107;
+    padding: 13px 30px;
+    border: none!important;
+}
+h1 {
+  font-weight: normal;
+  font-size: 140%;
+}
+.headerGradient{
+	/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#480048+0,c04848+100 */
+background: rgb(72,0,72); /* Old browsers */
+background: -moz-linear-gradient(left,  rgba(72,0,72,1) 0%, rgba(192,72,72,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  rgba(72,0,72,1) 0%,rgba(192,72,72,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  rgba(72,0,72,1) 0%,rgba(192,72,72,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#480048', endColorstr='#c04848',GradientType=1 ); /* IE6-9 */
+}
+#gameBoardContainer{
+	border: 0px solid red;
+	padding: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	background:#A788AE;
+	width:48vw;
+	height:48vw;
+	position:relative;
+}
+#GameBoardCanvas,#GameBoardCanvas1,#GameBoardCanvasBG {
+	width:100%;
+	height:100%;
+	position:absolute;
+	left: 50%;
+    top: 0px;
+}
+#blocklyDivContainer{
+	width:49vw;
+	height:calc(100vh - 56px);
+	display:inline-block;
+	vertical-align: top;
+}
+#blocklyDiv{
+	width:100%;
+	height:100%;
+}
+
+#canvasContainer{
+	width:48vw;
+	display:inline-block;
+	height:auto;
+	vertical-align: top;
+	border:0px solid #ccc;
+	border-radius:0px;
+	text-align: center;
+}
+
+#capacityBubble{
+	display:none;
+	position: absolute; 
+	padding: 4px 16px; 
+	display: inline-block; 
+	background: rgba(0, 0, 0, 0.3); 
+	color: rgb(255, 255, 255); 
+	border-radius: 50px; 
+	top: 8px; 
+	right: 8px; 
+	font-size: 16px; 
+	text-align: center; 
+z-index: 100;
+}
+
+@media (max-width: 700px) {
+	#blocklyDivContainer{
+		width:calc(100% - 16px);
+		margin:16px 8px 16px 0px;
+		height: 120vw;
+	}
+	#blocklyDiv{
+		width:100%;
+	}
+	#canvasContainer{
+		width:calc(100% - 16px);
+		margin:16px 8px 16px 0px;
+		display:flex;
+		height: auto;
+	}
+	#gameBoardContainer{
+		width : 90vw!important;
+		height : 90vw!important;
+		/*margin:auto;*/
+	}
+	#GameBoardCanvas,#GameBoardCanvas {
+	}
+	#capacityBubble{
+		top: inherit; 
+		right: inherit;
+		bottom : 10px;
+		left: 8px;	
+		font-size: 16px; 
+		text-align: center; 
+	}
+
+}

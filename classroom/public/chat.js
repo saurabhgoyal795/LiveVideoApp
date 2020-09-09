@@ -1015,3 +1015,7 @@ function startquizResponseTimer(){
      }
    });
  }
+
+ function calllert() {
+   alert('Pls change your settings to allow cookies');
+ }

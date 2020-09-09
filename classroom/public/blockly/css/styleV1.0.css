@@ -1,0 +1,58 @@
+body {
+  background-color: #fff;
+  font-family: sans-serif;
+}
+h1 {
+  font-weight: normal;
+  font-size: 140%;
+}
+#GameBoardCanvas {
+	border: 0px solid red;
+	padding: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	background:#A788AE;
+	width:48vw;
+	height:48vw;
+}
+#blocklyDivContainer{
+	width:50vw;
+	height:calc(100vh - 56px);
+	display:inline-block;
+	vertical-align: top;
+}
+#blocklyDiv{
+	width:100%;
+	height:100%;
+}
+
+#canvasContainer{
+	width:48vw;
+	display:inline-block;
+	height:auto;
+	vertical-align: top;
+	border:1px solid #ccc;
+	text-align: center;
+}
+
+@media (max-width: 700px) {
+	#blocklyDivContainer{
+		width:calc(100% - 16px);
+		margin:16px 8px 16px 8px;
+		height: 70vh;
+	}
+	#blocklyDiv{
+		width:100%;
+	}
+	#canvasContainer{
+		width:calc(100% - 16px);
+		margin:16px 8px 16px 8px;
+		display:flex;
+		height: auto;
+	}
+	#GameBoardCanvas {
+		width : 80vw!important;
+		height : 80vw!important;
+		margin:auto;
+	}
+}

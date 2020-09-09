@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Demo: Fixed Blockly</title>
+  <script src="blockly_compressed.js"></script>
+  <script src="blocks_compressed.js"></script>
+  <script src="en.js"></script>
+  <script src="javascript_compressed.js"></script>
+
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello Learner Testing</h1>
+
+  <div style="width:100%;">
+	<div id="blocklyDiv" style="width:50%;height:80vh;display:inline-block;vertical-align: top;"></div>
+	<div style="width:48%;display:inline-block;vertical-align: top;border:1px solid #ccc;">
+		<button onclick="generateCode()" style="margin:16px;">Generate Code</button>		
+		<button onclick="runCode()" style="margin:16px;">Run Code</button>		
+		<div id="generatedCodeDiv">
+		</div>
+	</div>
+  </div>	
+  
+  
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+    <block type="controls_if"></block>
+    <block type="logic_compare"></block>
+    <block type="controls_repeat_ext"></block>
+    <block type="math_number">
+      <field name="NUM">123</field>
+    </block>
+    <block type="math_arithmetic"></block>
+    <block type="text"></block>
+    <block type="text_print"></block>
+	<block type="controls_if"></block>
+  <block type="controls_whileUntil"></block>
+  </xml>
+
+  <script>
+    var workspace = Blockly.inject('blocklyDiv',
+        {media: 'media/',
+         toolbox: document.getElementById('toolbox')});
+		 
+	function generateCode(){
+		var code = Blockly.JavaScript.workspaceToCode(workspace);
+		document.getElementById("generatedCodeDiv").innerHTML = code;
+	}	 
+	
+	function runCode(){
+		var code = Blockly.JavaScript.workspaceToCode(workspace);
+		try {
+		  eval(code);
+		} catch (e) {
+		  alert(e);
+		}
+	}
+  </script>
+
+</body>
+</html>

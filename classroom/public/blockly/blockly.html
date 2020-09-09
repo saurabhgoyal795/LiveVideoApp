@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" media="all" type="image/x-icon" href="https://storage.helloenglish.com/English-Web/images/favicon-96x96.png">
+  <title>Hello Learner Coding</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <script src="../jquery-2.2.4.min.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
+<script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-functions.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+
+  <script src="/classroom/metronicTheme/prismjs.bundle.js"></script>
+  <script src="/classroom/metronicTheme/scripts.bundle.js"></script>
+
+  <script src="/classroom/blockly/blockly_compressed.js"></script>
+  <script src="/classroom/blockly/blocks_compressed.js"></script>
+  <script src="/classroom/blockly/en.js"></script>
+  <script src="/classroom/blockly/javascript_compressed.js"></script>
+  <script src="/classroom/blockly/acorn_interpreter.js"></script>
+
+  <script src="/classroom/firebase_custom.js"></script>
+  <script src="/classroom/blockly/js/soundmanager2-jsmin.js"></script>
+  <script src="/classroom/blockly/js/freehand_drawing.js"></script>
+  <script src="/classroom/blockly/js/drawing.js"></script>
+  <script src="/classroom/blockly/js/mazeV1.3.js"></script>
+  <script src="/classroom/blockly/js/jewel.js"></script>
+  <script src="/classroom/blockly/js/blocks.js"></script>
+
+  <!--
+  <script src="/blockly/js/turtle_level1.js"></script>
+  -->
+  <script src="/classroom/blockly/js/blocklyV1.6.js"></script>
+
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
+
+<link href="/classroom/metronicTheme/plugins.bundle.css" rel="stylesheet" type="text/css">
+<link href="/classroom/metronicTheme/prismjs.bundle.css" rel="stylesheet" type="text/css">
+<link href="/classroom/metronicTheme/style.bundle.css" rel="stylesheet" type="text/css">
+
+<link href="/classroom/blockly/css/blocklyV1.2.css" rel="stylesheet" type="text/css">
+<script>
+function getWindowHeight(){
+	try{
+		Android.getWindowHeight(window.innerHeight);
+	}catch(err){}
+	return window.innerHeight;
+}
+</script>
+<script>
+var KTAppSettings = {
+    "breakpoints": {
+        "sm": 576,
+        "md": 768,
+        "lg": 992,
+        "xl": 1200,
+        "xxl": 1200
+    },
+    "colors": {
+        "theme": {
+            "base": {
+                "white": "#ffffff",
+                "primary": "#0BB783",
+                "secondary": "#E5EAEE",
+                "success": "#1BC5BD",
+                "info": "#8950FC",
+                "warning": "#FFA800",
+                "danger": "#F64E60",
+                "light": "#F3F6F9",
+                "dark": "#212121"
+            },
+            "light": {
+                "white": "#ffffff",
+                "primary": "#D7F9EF",
+                "secondary": "#ECF0F3",
+                "success": "#C9F7F5",
+                "info": "#EEE5FF",
+                "warning": "#FFF4DE",
+                "danger": "#FFE2E5",
+                "light": "#F3F6F9",
+                "dark": "#D6D6E0"
+            },
+            "inverse": {
+                "white": "#ffffff",
+                "primary": "#ffffff",
+                "secondary": "#212121",
+                "success": "#ffffff",
+                "info": "#ffffff",
+                "warning": "#ffffff",
+                "danger": "#ffffff",
+                "light": "#464E5F",
+                "dark": "#ffffff"
+            }
+        },
+        "gray": {
+            "gray-100": "#F3F6F9",
+            "gray-200": "#ECF0F3",
+            "gray-300": "#E5EAEE",
+            "gray-400": "#D6D6E0",
+            "gray-500": "#B5B5C3",
+            "gray-600": "#80808F",
+            "gray-700": "#464E5F",
+            "gray-800": "#1B283F",
+            "gray-900": "#212121"
+        }
+    },
+    "font-family": "Poppins"
+};
+</script>
+</head>
+<body>
+  <div id="mainContainer" style="width:100%;overflow: auto;">
+	<div id="headerDiv" style="z-index: 10;top:0px;width:100%;min-height:56px;background: #480048; background: -webkit-linear-gradient(left,#480048,#C04848); background: linear-gradient(to right,#480048,#C04848)">
+		<table style="width:100%;height: 56px;">
+			<tbody><tr>
+				<td style="width:32px;">
+					<img style="height:42px;vertical-align:middle;margin-left:16px;" src="/classroom/img/hellolearnercoding_2x.png" />
+				</td>	
+			</tr>
+		</tbody></table>
+	</div>
+	<div id="blocklyDivContainer" class="card card-custom gutter-b example example-compact" style="">
+	  <div id="blocklyDiv" style="">
+	  </div>
+	  <div id="capacityBubble" style="">
+			</div>
+	</div>
+
+	<div id="canvasContainer" class="card card-custom gutter-b example example-compact" style="">
+		<div class="form-group adminFunction" style="margin:16px;">
+		  <div class="input-group">
+			  <button onclick="run()" class="btn buttonFormatted" type="button">Run</button>
+			  <button onclick="reset()" style="margin-left:16px;background:transparent;border:2px solid #92278f!important;" class="btn buttonFormatted" type="button">Reset</button>
+			  <button onclick="showCode()" style="margin-left:16px;background:transparent;border:2px solid #92278f!important;" class="btn buttonFormatted" type="button">Show code</button>
+			  <button onclick="checkDrawingAnswer()" style="margin-left:16px;display:none;" class="btn btn-success checkDrawingAnswer" type="button">Check code</button>
+		  </div>
+	    </div>
+		<!--
+		<button onclick="generateCode()" style="margin:16px;">Generate Code</button>
+		<button onclick="run()" style="margin:16px;">Run</button>
+		<button onclick="run1()" style="margin:16px;">Run1</button>
+		<button onclick="runAll()" style="margin:16px;">Run All</button>
+		-->
+		<div id="gameBoardContainer">
+			<div id="GameBoardCanvasBG" style=""></div>
+			<canvas id="GameBoardCanvas" style=""></canvas>
+			<canvas id="GameBoardCanvas1" style=""></canvas>
+		</div>
+		<div id="generatedCodeDiv" style="display:none;">
+		</div>
+	</div>
+
+	<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+	</xml>
+	<div id="scrollButtonDiv" style="position:fixed;right:30px;bottom:16px;display:none;">
+		<div onclick="$('#mainContainer').animate({scrollTop: $('#mainContainer').scrollTop() - 100}, 500);" style="cursor:pointer;display:inline-block;border-radius:4px;background:rgba(113,8,101,.3);"><img style="width:24px;" src="/classroom/img/baseline_arrow_upward_white_48dp.png"/></div>
+		<br>
+		<div onclick="$('#mainContainer').animate({scrollTop: $('#mainContainer').scrollTop() + 100}, 500);" style="cursor:pointer;display:inline-block;border-radius:4px;background:rgba(113,8,101,.3);margin-top:5px;"><img style="width:24px;" src="/classroom/img/baseline_arrow_downward_white_48dp.png"/></div>
+	</div>
+</div>
+<div id="showCodeScreen" style="width:100%;height:100vh;position:fixed;top:0px;background: rgba(0,0,0,.7);z-index:1000;display:none;">
+	<table style="width:100%;height:100vh;">
+		<tr>
+			<td style="text-align:center;">
+				<div class="modal position-relative d-block" tabindex="-1" role="dialog" style="height:auto;">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Your code</h5>
+								<!--
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<i aria-hidden="true" class="ki ki-close"></i>
+								</button>
+								-->
+							</div>
+							<div class="modal-body">
+								<p id="codeDiv"></p>
+							</div>
+							<div class="modal-footer">
+								<button onclick='$("#showCodeScreen").hide();' type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+								<!--
+								<button type="button" class="btn btn-primary">Save changes</button>
+								-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="" style="font-size: 16px;margin:16px;width:100%;max-height:100vh:overflow-y:auto;"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div id="showAlertScreen" style="width:100%;height:100vh;position:fixed;top:0px;background: rgba(0,0,0,.7);z-index:1000;display:none;">
+	<table style="width:100%;height:100vh;">
+		<tr>
+			<td style="text-align:center;">
+				<div class="modal position-relative d-block" tabindex="-1" role="dialog" style="height:auto;">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Awesome work <span class="userName"></span>!</h5>
+							</div>
+							<div class="modal-body">
+								<p id="alertDiv"></p>
+							</div>
+							<div class="modal-footer">
+								<button onclick='$("#showAlertScreen").hide();' type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+								<!--
+								<button type="button" class="btn btn-primary">Save changes</button>
+								-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="" style="font-size: 16px;margin:16px;width:100%;max-height:100vh:overflow-y:auto;"></div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div id="localStorageNotSupportScreen" style="width:100%;height:100vh;position:fixed;top:0px;background: rgba(0,0,0,.7);z-index:1000;display:none;">
+	<table style="width:100%;height:100vh;">
+		<tr>
+			<td style="text-align:center;">
+				<div class="" tabindex="-1" role="dialog" style="height:auto;">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content" style="text-align: left;">
+							<div class="modal-header">
+								<h5 class="modal-title">Hey,</h5>
+							</div>
+							<div class="modal-body">
+								<p id="">This game is not supported on this browser</p>
+							</div>
+							<div class="modal-footer">
+								<button onclick='$("#localStorageNotSupportScreen").hide();' type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div id="loadingScreen" style="width:100%;height:100vh;position:fixed;top:0px;background: rgba(255,255,255,.8);z-index:1000;display:none;">
+	<table style="width:100%;height:100vh;">
+		<tr>
+			<td style="text-align:center;">
+				<img src="/classroom/image/loading_gif.gif" style="width:50px;"/>
+			</td>
+		</tr>
+	</table>
+</div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-234281030', 'auto');
+  ga('send', 'pageview');
+  
+</script>
+</body>
+</html>
